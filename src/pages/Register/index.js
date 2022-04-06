@@ -2,7 +2,7 @@ import { StyleSheet, View, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import { Button, Gap, Header, Input } from '../../components'
 import { colors, useForm } from '../../utils'
-import { Fire } from '../../config'
+import { Fire, auth } from '../../config'
 
 export default function Register({ navigation }) {
 
@@ -16,20 +16,20 @@ export default function Register({ navigation }) {
     const onContinue = () => {
         console.log(form);
 
-        // Fire.auth()
-        //     .createUserWithEmailAndPassword(form.email, form.password)
-        //     // .then((userCredential) => {
-        //     //     const user = userCredential.user;
-        //     // })
-        //     .then((success) => {
-        //         console.log('register success: ', success);
-        //     })
-        //     .catch((error) => {
-        //         const errorMessage = error.message;
-        //         console.log('error register: ', errorMessage);
-        //     });
+        auth
+            .createUserWithEmailAndPassword(form.email, form.password)
+            // .then((userCredential) => {
+            //     const user = userCredential.user;
+            // })
+            .then((success) => {
+                console.log('register success: ', success);
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                console.log('error register: ', errorMessage);
+            });
 
-        // navigation.navigate('UploadPhoto')
+        navigation.navigate('UploadPhoto')
     };
     return (
         <View style={styles.page}>
