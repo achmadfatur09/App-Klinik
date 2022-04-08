@@ -2,8 +2,8 @@ import { StyleSheet, View, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import { Button, Gap, Header, Input } from '../../components'
 import { colors, useForm } from '../../utils'
-// import { Fire, auth } from '../../config'
-import {getAuth, createUserWithEmailAndPassword} from '@firebase/auth'
+import { getAuth, createUserWithEmailAndPassword} from '@firebase/auth'
+import { getDatabase, ref, push} from '@firebase/database';
 
 export default function Register({ navigation }) {
 
@@ -14,22 +14,22 @@ export default function Register({ navigation }) {
         password: '',
     })
 
-    const onContinue = () => {
-        console.log(form);
+    function writerUserData(data){
+        const db = getDatabase();
+        push(ref(db, 'users/'), data);
+    }
 
-        const auth = getAuth();
-        createUserWithEmailAndPassword(auth, form.email, form.password)
-            // .then((userCredential) => {
-            //     const user = userCredential.user;
-            //     console.log(user)
-            // })
+    const onContinue = () => {
+        createUserWithEmailAndPassword(getAuth(), form.email, form.password)
             .then((success) => {
                 console.log('register success: ', success);
-                navigation.navigate('UploadPhoto')
+                writerUserData(form);
+                navigation.navigate('UploadPhoto');
             })
             .catch((error) => {
                 const errorMessage = error.message;
                 console.log('error register: ', errorMessage);
+                alert(error.message);
             });
 
     };
