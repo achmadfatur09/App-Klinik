@@ -5,12 +5,9 @@ export const useForm = (initialValue) => {
     return [
         values,
         (formType, formValue) => {
-<<<<<<< HEAD
-=======
             if (formType === 'reset') {
                 return setValues(initialValue);
             }
->>>>>>> master
             return setValues({ ...values, [formType]: formValue })
         },
     ];
