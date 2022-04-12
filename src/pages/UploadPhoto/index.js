@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 import { Button, Gap, Header, Link } from '../../components'
@@ -5,6 +6,36 @@ import { IconAddPhoto, ILNullPhoto } from '../../assets';
 import { colors, fonts } from '../../utils';
 
 export default function UploadPhoto({ navigation }) {
+=======
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
+import React, { useState } from 'react'
+import { Button, Gap, Header, Link } from '../../components'
+import { IconAddPhoto, IconRemovePhoto, ILNullPhoto } from '../../assets';
+import { colors, fonts } from '../../utils';
+import { ImagePicker, launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import { showMessage } from 'react-native-flash-message';
+
+export default function UploadPhoto({ navigation }) {
+    const [hasPhoto, setHasPhoto] = useState(false);
+    const [photo, setPhoto] = useState(ILNullPhoto);
+    const getImage = () => {
+        ImagePicker.launchImageLibrary({}, response => {
+            console.log('respone: ', response);
+            if (response.didCancel || response.error) {
+                showMessage({
+                    message: 'opps, seperinya tidak jadi memilih foto',
+                    type: 'default',
+                    backgroundColor: colors.error,
+                    color: colors.white,
+                });
+            } else {
+                const source = { uri: response.uri };
+                setPhoto(source);
+                setHasPhoto(true);
+            }
+        });
+    };
+>>>>>>> master
     return (
         <View style={styles.page}>
             <Header
@@ -13,6 +44,7 @@ export default function UploadPhoto({ navigation }) {
             />
             <View style={styles.content}>
                 <View style={styles.profile}>
+<<<<<<< HEAD
                     <View style={styles.avatarWrapper}>
                         <Image
                             source={ILNullPhoto}
@@ -22,6 +54,16 @@ export default function UploadPhoto({ navigation }) {
                             style={styles.addPhoto}
                         />
                     </View>
+=======
+                    <TouchableOpacity style={styles.avatarWrapper} onPress={getImage}>
+                        <Image
+                            source={photo}
+                            style={styles.avatar}
+                        />
+                        {hasPhoto && <IconRemovePhoto style={styles.addPhoto} />}
+                        {!hasPhoto && <IconAddPhoto style={styles.addPhoto} />}
+                    </TouchableOpacity>
+>>>>>>> master
                     <Text style={styles.name}>
                         Achmad Faturohman
                     </Text>
@@ -31,6 +73,10 @@ export default function UploadPhoto({ navigation }) {
                 </View>
                 <View>
                     <Button
+<<<<<<< HEAD
+=======
+                        disable={!hasPhoto}
+>>>>>>> master
                         title="Upload and Continue"
                         onPress={() => navigation.replace('MainApp')}
                     />
@@ -66,6 +112,10 @@ const styles = StyleSheet.create({
     avatar: {
         width: 110,
         height: 110,
+<<<<<<< HEAD
+=======
+        borderRadius: 110 / 2,
+>>>>>>> master
     },
     avatarWrapper: {
         width: 130,
