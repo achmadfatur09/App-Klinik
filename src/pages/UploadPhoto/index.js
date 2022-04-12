@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Button, Gap, Header, Link } from '../../components'
 import { IconAddPhoto, IconRemovePhoto, ILNullPhoto } from '../../assets';
 import { colors, fonts } from '../../utils';
-import { ImagePicker, launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import * as ImagePicker from 'react-native-image-picker';
 import { showMessage } from 'react-native-flash-message';
 
 export default function UploadPhoto({ navigation }) {
@@ -20,7 +20,7 @@ export default function UploadPhoto({ navigation }) {
                     color: colors.white,
                 });
             } else {
-                const source = { uri: response.uri };
+                const source = { uri: response['assets'][0].uri };
                 setPhoto(source);
                 setHasPhoto(true);
             }
