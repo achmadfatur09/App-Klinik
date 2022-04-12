@@ -2,11 +2,8 @@
   package="com.mydoctor">
 
     <uses-permission android:name="android.permission.INTERNET" />
-<<<<<<< HEAD
-=======
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
->>>>>>> master
 
     <application
       android:name=".MainApplication"

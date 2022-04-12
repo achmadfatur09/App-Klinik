@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import { StyleSheet, Text, View, Image } from 'react-native'
-import React from 'react'
-import { Button, Gap, Header, Link } from '../../components'
-import { IconAddPhoto, ILNullPhoto } from '../../assets';
-import { colors, fonts } from '../../utils';
-
-export default function UploadPhoto({ navigation }) {
-=======
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { Button, Gap, Header, Link } from '../../components'
@@ -35,7 +26,6 @@ export default function UploadPhoto({ navigation }) {
             }
         });
     };
->>>>>>> master
     return (
         <View style={styles.page}>
             <Header
@@ -44,17 +34,6 @@ export default function UploadPhoto({ navigation }) {
             />
             <View style={styles.content}>
                 <View style={styles.profile}>
-<<<<<<< HEAD
-                    <View style={styles.avatarWrapper}>
-                        <Image
-                            source={ILNullPhoto}
-                            style={styles.avatar}
-                        />
-                        <IconAddPhoto
-                            style={styles.addPhoto}
-                        />
-                    </View>
-=======
                     <TouchableOpacity style={styles.avatarWrapper} onPress={getImage}>
                         <Image
                             source={photo}
@@ -63,7 +42,7 @@ export default function UploadPhoto({ navigation }) {
                         {hasPhoto && <IconRemovePhoto style={styles.addPhoto} />}
                         {!hasPhoto && <IconAddPhoto style={styles.addPhoto} />}
                     </TouchableOpacity>
->>>>>>> master
+
                     <Text style={styles.name}>
                         Achmad Faturohman
                     </Text>
@@ -73,10 +52,7 @@ export default function UploadPhoto({ navigation }) {
                 </View>
                 <View>
                     <Button
-<<<<<<< HEAD
-=======
                         disable={!hasPhoto}
->>>>>>> master
                         title="Upload and Continue"
                         onPress={() => navigation.replace('MainApp')}
                     />
@@ -112,10 +88,7 @@ const styles = StyleSheet.create({
     avatar: {
         width: 110,
         height: 110,
-<<<<<<< HEAD
-=======
         borderRadius: 110 / 2,
->>>>>>> master
     },
     avatarWrapper: {
         width: 130,

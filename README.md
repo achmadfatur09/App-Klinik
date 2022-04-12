@@ -1,4 +1,4 @@
-﻿# App-Klinik
+# App-Klinik
 Aplikasi Kesehatan Android React Native, dengan fitur
 - Create Account (Multi Account)
 - List Doctor

@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-
-export default function Loading() {
-  return (
-    <View>
-      <Text>Loading</Text>
-    </View>
-  )
-}
-
-const styles = StyleSheet.create({})
-=======
 import { StyleSheet, Text, View, ActivityIndicator } from 'react-native'
 import React from 'react'
 import { colors, fonts } from '../../../utils'
@@ -47,4 +33,3 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
 })
->>>>>>> master
