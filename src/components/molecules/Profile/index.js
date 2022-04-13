@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
-import React from 'react'
-import { DummyUser, IconRemovePhoto } from '../../../assets'
-import { colors, fonts } from '../../../utils'
+import { StyleSheet, Text, View, Image } from 'react-native';
+import React from 'react';
+import { DummyUser, IconRemovePhoto } from '../../../assets';
+import { colors, fonts } from '../../../utils';
 
 export default function Profile({ name, desc, isRemove }) {
   return (

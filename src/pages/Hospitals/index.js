@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View, ImageBackground } from 'react-native'
-import React from 'react'
-import { DummyHospital1, DummyHospital2, DummyHospital3, ILHospitalBG } from '../../assets'
+import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import React from 'react';
+import { DummyHospital1, DummyHospital2, DummyHospital3, ILHospitalBG } from '../../assets';
 import { colors, fonts } from '../../utils';
 import { ListHospital } from '../../components';
 

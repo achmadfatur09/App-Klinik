@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View, ScrollView } from 'react-native'
-import React from 'react'
-import { Button, Gap, Header, Input, Profile } from '../../components'
-import { colors } from '../../utils'
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import React from 'react';
+import { Button, Gap, Header, Input, Profile } from '../../components';
+import { colors } from '../../utils';
 
 export default function UpdateProfile({ navigation }) {
   return (

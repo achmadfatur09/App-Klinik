@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
-import React from 'react'
-import { colors, fonts } from '../../../utils'
-import { DummyDoctor9 } from '../../../assets'
+import { StyleSheet, Text, View, Image } from 'react-native';
+import React from 'react';
+import { colors, fonts } from '../../../utils';
+import { DummyDoctor9 } from '../../../assets';
 
 export default function Other() {
     return (

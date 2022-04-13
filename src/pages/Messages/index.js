@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
-import { List } from '../../components'
-import { colors, fonts } from '../../utils'
-import { DummyDoctor4, DummyDoctor5, DummyDoctor6 } from '../../assets'
+import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { List } from '../../components';
+import { colors, fonts } from '../../utils';
+import { DummyDoctor4, DummyDoctor5, DummyDoctor6 } from '../../assets';
 
 export default function Messages({navigation}) {
   const [doctors] = useState([

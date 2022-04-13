@@ -1,12 +1,16 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
-import { Button, Gap, Header, Link } from '../../components'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { Button, Gap, Header, Link } from '../../components';
 import { IconAddPhoto, IconRemovePhoto, ILNullPhoto } from '../../assets';
 import { colors, fonts } from '../../utils';
 import * as ImagePicker from 'react-native-image-picker';
 import { showMessage } from 'react-native-flash-message';
+import { getAuth, createUserWithEmailAndPassword } from '@firebase/auth';
+import { getDatabase, ref, push } from '@firebase/database';
 
-export default function UploadPhoto({ navigation }) {
+export default function UploadPhoto({ navigation, route }) {
+    const { fullName, profession } = route.params;
+    const [photoForDB, setPhotoForDB] = useState('');
     const [hasPhoto, setHasPhoto] = useState(false);
     const [photo, setPhoto] = useState(ILNullPhoto);
     const getImage = () => {
@@ -20,12 +24,23 @@ export default function UploadPhoto({ navigation }) {
                     color: colors.white,
                 });
             } else {
+                const setPhotoForDB = `data:${response.type};base64, ${response.data}`;
+
                 const source = { uri: response['assets'][0].uri };
                 setPhoto(source);
                 setHasPhoto(true);
             }
         });
     };
+    const uploadAndContinue = () => {
+        function writerUserData(data) {
+            const db = getDatabase();
+            push(ref(db, 'users/'), data);
+            update({ photo: photoForDB });
+
+            navigation.replace('MainApp');
+        };
+    }
     return (
         <View style={styles.page}>
             <Header
@@ -43,18 +58,14 @@ export default function UploadPhoto({ navigation }) {
                         {!hasPhoto && <IconAddPhoto style={styles.addPhoto} />}
                     </TouchableOpacity>
 
-                    <Text style={styles.name}>
-                        Achmad Faturohman
-                    </Text>
-                    <Text style={styles.profession}>
-                        Android Developers
-                    </Text>
+                    <Text style={styles.name}> {fullName} </Text>
+                    <Text style={styles.profession}> {profession} </Text>
                 </View>
                 <View>
                     <Button
                         disable={!hasPhoto}
                         title="Upload and Continue"
-                        onPress={() => navigation.replace('MainApp')}
+                        onPress={uploadAndContinue}
                     />
                     <Gap height={30} />
                     <Link

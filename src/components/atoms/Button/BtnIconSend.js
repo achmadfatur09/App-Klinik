@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { IconSendDark, IconSendLight } from '../../../assets'
-import { colors } from '../../../utils'
+import { StyleSheet, View } from 'react-native';
+import React from 'react';
+import { IconSendDark, IconSendLight } from '../../../assets';
+import { colors } from '../../../utils';
 
 export default function BtnIconSend({ disable }) {
     return (

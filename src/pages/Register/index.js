@@ -1,10 +1,10 @@
 import { StyleSheet, View, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import { Button, Gap, Header, Input, Loading } from '../../components';
-import { colors, useForm } from '../../utils';
+import { colors, storeData, useForm } from '../../utils';
 import { getAuth, createUserWithEmailAndPassword } from '@firebase/auth';
 import { getDatabase, ref, push } from '@firebase/database';
-import { showMessage, hideMessage } from "react-native-flash-message";
+import { showMessage } from "react-native-flash-message";
 
 export default function Register({ navigation }) {
 
@@ -15,11 +15,17 @@ export default function Register({ navigation }) {
         password: '',
     });
 
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
 
     function writerUserData(data) {
         const db = getDatabase();
         push(ref(db, 'users/'), data);
+
+        // getData('user').then(res => {
+        //     console.log('data: ', res);
+        // });
+        storeData('user', data);
+
     }
 
     const onContinue = () => {
@@ -28,16 +34,17 @@ export default function Register({ navigation }) {
         createUserWithEmailAndPassword(getAuth(), form.email, form.password)
             .then((success) => {
                 setLoading(false);
-                setForm('reset')
+                setForm('reset');
                 console.log('register success: ', success);
                 writerUserData(form);
-                navigation.navigate('UploadPhoto');
+                navigation.navigate('UploadPhoto', data);
             })
             .catch((error) => {
                 const errorMessage = error.message;
                 setLoading(false);
                 showMessage({
-                    message: errorMessage,
+                    // message: errorMessage,
+                    message: 'The email address is already in use by another account.',
                     type: 'default',
                     backgroundColor: colors.error,
                     color: colors.white,

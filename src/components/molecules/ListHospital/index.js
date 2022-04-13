@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
-import React from 'react'
-import { colors, fonts } from '../../../utils'
+import { StyleSheet, Text, View, Image } from 'react-native';
+import React from 'react';
+import { colors, fonts } from '../../../utils';
 
 export default function ListHospital({ type, name, address, pic }) {
     return (

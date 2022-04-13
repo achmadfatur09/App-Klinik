@@ -4,10 +4,10 @@ import {
     View,
     Image,
     TouchableOpacity
-} from 'react-native'
-import React from 'react'
-import { colors, fonts } from '../../../utils'
-import { IconEditProfile, IconHelp, IconLanguage, IconNext, IconRate } from '../../../assets'
+} from 'react-native';
+import React from 'react';
+import { colors, fonts } from '../../../utils';
+import { IconEditProfile, IconHelp, IconLanguage, IconNext, IconRate } from '../../../assets';
 
 export default function List({ profile, name, desc, type, onPress, icon }) {
     const Icon = () => {

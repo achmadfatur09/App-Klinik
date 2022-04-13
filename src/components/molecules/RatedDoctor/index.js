@@ -1,7 +1,7 @@
-import React from 'react'
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
-import { IconStar } from '../../../assets'
-import { colors, fonts } from '../../../utils'
+import React from 'react';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { IconStar } from '../../../assets';
+import { colors, fonts } from '../../../utils';
 
 export default function RatedDoctor({ name, desc, avatar, onPress }) {
   return (

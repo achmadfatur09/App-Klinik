@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { Button, Gap, Header, Profile, ProfileItem } from '../../components'
-import { colors } from '../../utils'
+import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { Button, Gap, Header, Profile, ProfileItem } from '../../components';
+import { colors } from '../../utils';
 
 export default function DocterProfile({ navigation }) {
   return (

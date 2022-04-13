@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { Header, Profile, List, Gap } from '../../components'
-import { colors } from '../../utils'
+import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { Header, Profile, List, Gap } from '../../components';
+import { colors } from '../../utils';
 
 
 export default function UserProfile({ navigation }) {

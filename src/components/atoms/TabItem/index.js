@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import React from 'react';
 import {
   IconDoctor,
   IconDoctorActive,
@@ -7,8 +7,8 @@ import {
   IconHospitalsActive,
   IconMessages,
   IconMessagesActive
-} from '../../../assets'
-import { colors, fonts } from '../../../utils'
+} from '../../../assets';
+import { colors, fonts } from '../../../utils';
 
 export default function TabItem({ title, active, onPress, onLongPress }) {
   const Icon = () => {

@@ -1,6 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { IconBackDark } from '../../../assets'
+import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
 import { Button, Gap } from '../../atoms';
 import { colors, fonts } from '../../../utils';
 import DarkProfile from './DarkProfile';
