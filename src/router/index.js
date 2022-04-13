@@ -21,6 +21,7 @@ import { BottomNavigator } from "../components";
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
+
 const MainApp = () => {
     return (
         <Tab.Navigator tabBar={props => <BottomNavigator {...props} />}>
