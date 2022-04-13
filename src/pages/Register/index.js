@@ -51,7 +51,6 @@ export default function Register({ navigation }) {
                 });
                 console.log('error: ', error);
             });
-
     };
     return (
         <>

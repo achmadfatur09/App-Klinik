@@ -32,6 +32,7 @@ export default function UploadPhoto({ navigation, route }) {
             }
         });
     };
+    
     const uploadAndContinue = () => {
         function writerUserData(data) {
             const db = getDatabase();
