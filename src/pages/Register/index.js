@@ -37,7 +37,7 @@ export default function Register({ navigation }) {
                 setForm('reset');
                 console.log('register success: ', success);
                 writerUserData(form);
-                navigation.navigate('UploadPhoto', data);
+                navigation.navigate('UploadPhoto', form);
             })
             .catch((error) => {
                 const errorMessage = error.message;
