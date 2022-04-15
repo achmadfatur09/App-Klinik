@@ -1,4 +1,4 @@
-import Fire from "./Fire";
-import auth from "./FireAuth";
+// import Fire from "./Fire";
+// import auth from "./FireAuth";
 
-export {Fire, auth};
+// export {Fire, auth};

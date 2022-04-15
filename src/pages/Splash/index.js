@@ -4,20 +4,21 @@ import { useEffect } from 'react/cjs/react.development';
 import { ILLogo } from '../../assets';
 import { colors, fonts } from '../../utils';
 import { app } from '../../config';
+import {getAuth} from '@firebase/auth';
 
 export default function Splash({ navigation }) {
     useEffect(() => {
         setTimeout(() => {
-            // app.auth().onAuthStateChanged((user) => {
-            //     if (user) {
-            //         // user sedang login
-            //         console.log('user: ', user);
-                    // navigation.replace('MainApp');
-            //     } else {
-            //         // user logout
-                    // navigation.replace('GetStarted');
-            //     }
-            // });
+            getAuth().onAuthStateChanged((user) => {
+                if (user) {
+                    // user sedang login
+                    console.log('user: ', user);
+                    navigation.replace('MainApp');
+                } else {
+                    // user logout
+                    navigation.replace('GetStarted');
+                }
+            });
         }, 2000)
     }, [navigation])
     return (

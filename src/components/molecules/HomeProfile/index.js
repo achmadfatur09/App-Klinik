@@ -14,16 +14,18 @@ export default function HomeProfile({ onPress }) {
         getData('user').then(res => {
             // console.log('data user: ', res);
             const data = res;
-            data.photo = { uri: res.photo };
+            data.photo = { uri: (data.photo === undefined) ? ILNullPhoto : data.photo };
             console.log('new profile: ', data);
             setProfile(res);
+        }).catch(e => {
+
         });
     }, []);
 
     return (
         <TouchableOpacity style={styles.container} onPress={onPress}>
             <Image
-                source={profile.photo}
+                source={profile.photo.uri}
                 style={styles.avatar}
             />
             <View>
