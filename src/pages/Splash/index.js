@@ -3,7 +3,6 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useEffect } from 'react/cjs/react.development';
 import { ILLogo } from '../../assets';
 import { colors, fonts } from '../../utils';
-import { app } from '../../config';
 
 export default function Splash({ navigation }) {
     useEffect(() => {
