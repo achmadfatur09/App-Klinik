@@ -5,8 +5,9 @@ import { IconAddPhoto, IconRemovePhoto, ILNullPhoto } from '../../assets';
 import { colors, fonts } from '../../utils';
 import * as ImagePicker from 'react-native-image-picker';
 import { showMessage } from 'react-native-flash-message';
-import { getAuth, createUserWithEmailAndPassword } from '@firebase/auth';
-import { getDatabase, ref, push } from '@firebase/database';
+import { getAuth } from '@firebase/auth';
+import { getDatabase, ref, update } from '@firebase/database';
+import { getStorage, ref as refStorage, uploadBytes } from '@firebase/storage';
 
 export default function UploadPhoto({ navigation, route }) {
     const { fullName, profession } = route.params;
@@ -14,7 +15,7 @@ export default function UploadPhoto({ navigation, route }) {
     const [hasPhoto, setHasPhoto] = useState(false);
     const [photo, setPhoto] = useState(ILNullPhoto);
     const getImage = () => {
-        ImagePicker.launchImageLibrary({}, response => {
+        ImagePicker.launchImageLibrary({ mediaTypes:'Images', }, response => {
             console.log('respone: ', response);
             if (response.didCancel || response.error) {
                 showMessage({
@@ -24,23 +25,33 @@ export default function UploadPhoto({ navigation, route }) {
                     color: colors.white,
                 });
             } else {
-                const setPhotoForDB = `data:${response.type};base64, ${response.data}`;
+                // const setPhotoForDB = `data:${response.type};base64, ${response.data}`;
 
-                const source = { uri: response['assets'][0].uri };
+                const source = { uri: response.assets[0].uri };
                 setPhoto(source);
+                setPhotoForDB(response.assets[0])
                 setHasPhoto(true);
             }
         });
     };
     
-    const uploadAndContinue = () => {
-        function writerUserData(data) {
-            const db = getDatabase();
-            push(ref(db, 'users/'), data);
-            update({ photo: photoForDB });
+    const uploadAndContinue = async () => {
+        const db = getDatabase();
+        const uid = getAuth().currentUser.uid;
+        const storage = getStorage();
 
-            navigation.replace('MainApp');
-        };
+        const referStorage = refStorage(storage, 'profil/' + photoForDB.fileName);
+
+        const respone = await fetch(photoForDB.uri);
+        const blob = await respone.blob();
+        uploadBytes(referStorage, blob).then(snapshot => {
+            console.log('Uploaded a blob or file!');
+            update(ref(db, 'users/'+uid), {
+                    photo: photoForDB.fileName,
+                }
+            )
+        })
+        // navigation.replace('MainApp');
     }
     return (
         <View style={styles.page}>

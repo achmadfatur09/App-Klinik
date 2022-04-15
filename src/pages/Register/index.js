@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Button, Gap, Header, Input, Loading } from '../../components';
 import { colors, storeData, useForm } from '../../utils';
 import { getAuth, createUserWithEmailAndPassword } from '@firebase/auth';
-import { getDatabase, ref, push } from '@firebase/database';
+import { getDatabase, ref, set } from '@firebase/database';
 import { showMessage } from "react-native-flash-message";
 
 export default function Register({ navigation }) {
@@ -17,9 +17,9 @@ export default function Register({ navigation }) {
 
     const [loading, setLoading] = useState(false);
 
-    function writerUserData(data) {
+    function writerUserData(data, uid) {
         const db = getDatabase();
-        push(ref(db, 'users/'), data);
+        set(ref(db, 'users/'+uid), data);
 
         // getData('user').then(res => {
         //     console.log('data: ', res);
@@ -31,13 +31,15 @@ export default function Register({ navigation }) {
     const onContinue = () => {
 
         setLoading(true);
-        createUserWithEmailAndPassword(getAuth(), form.email, form.password)
-            .then((success) => {
+        const auth = getAuth()
+        createUserWithEmailAndPassword(auth, form.email, form.password)
+        .then((success) => {
+                const uid = auth.currentUser.uid
                 setLoading(false);
                 setForm('reset');
                 console.log('register success: ', success);
-                writerUserData(form);
-                navigation.navigate('UploadPhoto', data);
+                writerUserData(form, uid);
+                navigation.navigate('UploadPhoto', form);
             })
             .catch((error) => {
                 const errorMessage = error.message;
