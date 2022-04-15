@@ -15,26 +15,28 @@ export default function UploadPhoto({ navigation, route }) {
     const [hasPhoto, setHasPhoto] = useState(false);
     const [photo, setPhoto] = useState(ILNullPhoto);
     const getImage = () => {
-        ImagePicker.launchImageLibrary({ mediaTypes:'Images', }, response => {
-            console.log('respone: ', response);
-            if (response.didCancel || response.error) {
-                showMessage({
-                    message: 'opps, seperinya tidak jadi memilih foto',
-                    type: 'default',
-                    backgroundColor: colors.error,
-                    color: colors.white,
-                });
-            } else {
-                // const setPhotoForDB = `data:${response.type};base64, ${response.data}`;
+        ImagePicker.launchImageLibrary(
+            { mediaTypes: 'Images', quality: 0.5, maxWidth: 200, maxHeight: 200 },
+            response => {
+                console.log('respone: ', response);
+                if (response.didCancel || response.error) {
+                    showMessage({
+                        message: 'opps, seperinya tidak jadi memilih foto',
+                        type: 'default',
+                        backgroundColor: colors.error,
+                        color: colors.white,
+                    });
+                } else {
+                    // const setPhotoForDB = `data:${response.type};base64, ${response.data}`;
 
-                const source = { uri: response.assets[0].uri };
-                setPhoto(source);
-                setPhotoForDB(response.assets[0])
-                setHasPhoto(true);
-            }
-        });
+                    const source = { uri: response.assets[0].uri };
+                    setPhoto(source);
+                    setPhotoForDB(response.assets[0])
+                    setHasPhoto(true);
+                }
+            });
     };
-    
+
     const uploadAndContinue = async () => {
         const db = getDatabase();
         const uid = getAuth().currentUser.uid;
@@ -46,12 +48,12 @@ export default function UploadPhoto({ navigation, route }) {
         const blob = await respone.blob();
         uploadBytes(referStorage, blob).then(snapshot => {
             console.log('Uploaded a blob or file!');
-            update(ref(db, 'users/'+uid), {
-                    photo: photoForDB.fileName,
-                }
+            update(ref(db, 'users/' + uid), {
+                photo: photoForDB.fileName,
+            }
             )
         })
-        // navigation.replace('MainApp');
+        navigation.replace('MainApp');
     }
     return (
         <View style={styles.page}>
