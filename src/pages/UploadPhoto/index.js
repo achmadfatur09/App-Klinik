@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { Button, Gap, Header, Link } from '../../components';
 import { IconAddPhoto, IconRemovePhoto, ILNullPhoto } from '../../assets';
-import { colors, fonts } from '../../utils';
+import { colors, fonts, storeData} from '../../utils';
 import * as ImagePicker from 'react-native-image-picker';
 import { showMessage } from 'react-native-flash-message';
 import { getAuth } from '@firebase/auth';
@@ -49,9 +49,10 @@ export default function UploadPhoto({ navigation, route }) {
         uploadBytes(referStorage, blob).then(snapshot => {
             console.log('Uploaded a blob or file!');
             update(ref(db, 'users/' + uid), {
-                photo: photoForDB.fileName,
-            }
-            )
+                photo: `data:${photoForDB.type};base64, ${photoForDB.uri}`,
+            })
+            route.params.photo = `data:${photoForDB.type};base64, ${photoForDB.uri}`;
+            storeData('user', route.params);
         })
         navigation.replace('MainApp');
     }

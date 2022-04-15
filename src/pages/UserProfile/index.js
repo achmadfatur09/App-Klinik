@@ -15,10 +15,11 @@ export default function UserProfile({ navigation }) {
     useEffect(() => {
         getData('user').then(res => {
             const data = res;
-            data.photo = { uri: res.photo };
+            data.photo = { uri: (data.photo === undefined) ? ILNullPhoto : data.photo };
             setProfile(data);
         });
     }, [])
+
     const logout = () => {
         const auth = getAuth();
         signOut(auth).then(() => {
@@ -28,6 +29,7 @@ export default function UserProfile({ navigation }) {
             })
         })
     }
+
     return (
         <View style={styles.page}>
             <Header
@@ -39,7 +41,7 @@ export default function UserProfile({ navigation }) {
                 <Profile
                     name={profile.fullName}
                     desc={profile.profession}
-                    photo={profile.photo}
+                    photo={profile.photo.uri}
                 />}
 
             <Gap height={14} />
