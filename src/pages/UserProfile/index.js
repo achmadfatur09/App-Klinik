@@ -1,10 +1,23 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Header, Profile, List, Gap } from '../../components';
-import { colors } from '../../utils';
+import { colors, getData } from '../../utils';
+import { ILNullPhoto } from '../../assets';
 
 
 export default function UserProfile({ navigation }) {
+    const [profile, setProfile] = useState({
+        fullName: '',
+        profession: '',
+        photo: ILNullPhoto,
+    });
+    useEffect(() => {
+        getData('user').then(res => {
+            const data = res;
+            data.photo = { uri: res.photo };
+            setProfile(data);
+        });
+    }, [])
     return (
         <View style={styles.page}>
             <Header
@@ -12,10 +25,13 @@ export default function UserProfile({ navigation }) {
                 onPress={() => navigation.goBack()}
             />
             <Gap height={10} />
-            <Profile
-                name="Achmad Faturohman"
-                desc="Android Developers"
-            />
+            {profile.fullName.length > 0 &&
+                <Profile
+                    name={profile.fullName}
+                    desc={profile.profession}
+                    photo={profile.photo}
+                />}
+
             <Gap height={14} />
             <List
                 name="Edit Profile"
@@ -25,19 +41,19 @@ export default function UserProfile({ navigation }) {
                 onPress={() => navigation.navigate('UpdateProfile')}
             />
             <List
-                name="Edit Profile"
+                name="Language"
                 desc="Last Update Yesterday"
                 type="next"
                 icon="language"
             />
             <List
-                name="Edit Profile"
+                name="Give Us Rate"
                 desc="Last Update Yesterday"
                 type="next"
                 icon="rate"
             />
             <List
-                name="Edit Profile"
+                name="Logout"
                 desc="Last Update Yesterday"
                 type="next"
                 icon="help"
