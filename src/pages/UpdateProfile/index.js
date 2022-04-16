@@ -28,6 +28,21 @@ export default function UpdateProfile({ navigation }) {
   //   console.log('profile: ', profile);
   //   const data = profile;
   //   data.photo = photoForDB;
+  // console.log('new Password: ', password);
+
+  if (password.length > 0) {
+    if (password.length < 6) {
+      showMessage({
+        message: 'Opps...Password Kuang Dari 6 Karakter',
+        type: 'default',
+        backgroundColor: colors.error,
+        color: colors.white,
+      });
+    } else{
+      // Update Password
+    }
+  }
+
   //   auth.database()
   //     .ref(`user/${profile.uid}/`)
   //     .update(data)
@@ -105,7 +120,9 @@ export default function UpdateProfile({ navigation }) {
           <Gap height={24} />
           <Input
             label="Password"
+            secureTextEntry
             value={password}
+            onChangeText={(value) => setPassword(value)}
           />
           <Gap height={40} />
           <Button
