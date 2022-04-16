@@ -2,8 +2,6 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { Button, Gap, Header, Input, Profile } from '../../components';
 import { colors, getData, storeData } from '../../utils';
-import { getDatabase, ref, update } from '@firebase/database';
-import { getStorage, ref as refStorage, uploadBytes, getDownloadURL } from '@firebase/storage';
 import { showMessage } from '../../utils/showMessage';
 import ImagePicker from 'react-native-image-picker';
 import { ILNullPhoto } from '../../assets';
