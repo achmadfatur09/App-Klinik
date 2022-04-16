@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import React, { useState, useEffect } from 'react';
-import { DummyUser, ILNullPhoto } from '../../../assets';
+import { ILNullPhoto } from '../../../assets';
 import { colors, fonts, getData } from '../../../utils';
 
 export default function HomeProfile({ onPress }) {

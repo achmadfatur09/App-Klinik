@@ -4,7 +4,7 @@ import { ILLogo } from '../../assets';
 import { Button, Gap, Input, Link, Loading } from '../../components';
 import { colors, fonts, storeData, useForm } from '../../utils';
 import { getAuth, signInWithEmailAndPassword } from '@firebase/auth';
-import {getDatabase, ref, get } from '@firebase/database';
+import { getDatabase, ref, get } from '@firebase/database';
 import { showMessage } from 'react-native-flash-message';
 
 export default function Login({ navigation }) {
@@ -19,21 +19,12 @@ export default function Login({ navigation }) {
             .then(res => {
                 console.log('success: ', res);
                 const db = getDatabase();
-                get(ref(db, 'users/'+ auth.currentUser.uid)).then((snapshot) => {
+                get(ref(db, 'users/' + auth.currentUser.uid)).then((snapshot) => {
                     storeData('user', snapshot.val())
                     navigation.replace('MainApp');
                 })
                 setLoading(false);
 
-                // auth.database()
-                //     .ref(`users/${res.user.uid}/`)
-                //     .once('value').then(resDB => {
-                //         console.log('data user: ', resDB.val());
-                //         if (resDB.val()) {
-                //             storeData('user', resDB.val());
-                //             navigation.replace('MainApp');
-                //         }
-                //     });
             })
             .catch(err => {
                 console.log('err: ', err);
