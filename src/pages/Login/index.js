@@ -25,15 +25,6 @@ export default function Login({ navigation }) {
                 })
                 setLoading(false);
 
-                // auth.database()
-                //     .ref(`users/${res.user.uid}/`)
-                //     .once('value').then(resDB => {
-                //         console.log('data user: ', resDB.val());
-                //         if (resDB.val()) {
-                //             storeData('user', resDB.val());
-                //             navigation.replace('MainApp');
-                //         }
-                //     });
             })
             .catch(err => {
                 console.log('err: ', err);
