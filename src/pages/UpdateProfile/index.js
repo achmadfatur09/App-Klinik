@@ -24,53 +24,63 @@ export default function UpdateProfile({ navigation }) {
     });
   }, []);
 
-  // const update = () => {
-  //   console.log('profile: ', profile);
-  //   const data = profile;
-  //   data.photo = photoForDB;
-  // console.log('new Password: ', password);
+  const update = () => {
+    console.log('profile: ', profile);
+    console.log('new Password: ', password);
 
-  if (password.length > 0) {
-    if (password.length < 6) {
-      showMessage({
-        message: 'Opps...Password Kuang Dari 6 Karakter',
-        type: 'default',
-        backgroundColor: colors.error,
-        color: colors.white,
-      });
+    if (password.length > 0) {
+      if (password.length < 6) {
+        showMessage({
+          message: 'Opps...Password Kuang Dari 6 Karakter',
+          type: 'default',
+          backgroundColor: colors.error,
+          color: colors.white,
+        });
+      } else {
+        updatePassword();
+        updateProfileData();
+        navigation.replace('MainApp');
+      }
     } else {
-      // Update Password
-      auth().onAuthStateChange(user => {
-        if (user) {
-          user.updatePassword(password).catch(err => {
-            showMessage({
-              message: err.message,
-              type: 'default',
-              backgroundColor: colors.error,
-              color: colors.white,
-            });
-          })
-        }
-      })
+      updateProfileData();
+      navigation.replace('MainApp');
     }
-  }
+  };
 
-  //   auth.database()
-  //     .ref(`user/${profile.uid}/`)
-  //     .update(data)
-  //     .then(() => {
-  //       console.log('success: ', data);
-  //        storeData('user', data);
-  //     })
-  //     .catch(err => {
-  //       showMessage({
-  //         message: err.message,
-  //         type: 'default',
-  //         backgroundColor: colors.error,
-  //         collor: colors.white,
-  //       });
-  //     });
-  // };
+  const updatePassword = () => {
+    auth().onAuthStateChange(user => {
+      if (user) {
+        user.updatePassword(password).catch(err => {
+          showMessage({
+            message: err.message,
+            type: 'default',
+            backgroundColor: colors.error,
+            color: colors.white,
+          });
+        });
+      }
+    });
+  };
+
+  const updateProfileData = () => {
+    const data = profile;
+    data.photo = photoForDB;
+    auth.database()
+      .ref(`user/${profile.uid}/`)
+      .update(data)
+      .then(() => {
+        console.log('success: ', data);
+        storeData('user', data);
+      })
+      .catch(err => {
+        showMessage({
+          message: err.message,
+          type: 'default',
+          backgroundColor: colors.error,
+          collor: colors.white,
+        });
+      });
+  }
 
   const changeText = (key, value) => {
     setProfile({
