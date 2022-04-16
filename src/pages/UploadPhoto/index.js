@@ -51,13 +51,12 @@ export default function UploadPhoto({ navigation, route }) {
         
         uploadBytes(referStorage, blob).then(snapshot => {
             console.log('Uploaded a blob or file!');
-            getDownloadURL(referStorage).then(url => {
-                const imageUrlEncode = base64.encode(url);
+            getDownloadURL(referStorage).then(imageUrl => {
                 update(ref(db, 'users/' + uid), {
                     // photo: {uri:`data:${photoForDB.type};base64,${imageUrlEncode}`},
-                    photo: {uri: imageUrlEncode},
+                    photo: {uri: imageUrl},
                 })
-                route.params.photo = {uri: base64.decode(imageUrlEncode)};
+                route.params.photo = {uri: imageUrl};
                 
                 storeData('user', route.params);
                 navigation.replace('MainApp');
