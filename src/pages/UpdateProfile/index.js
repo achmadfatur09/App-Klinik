@@ -38,8 +38,20 @@ export default function UpdateProfile({ navigation }) {
         backgroundColor: colors.error,
         color: colors.white,
       });
-    } else{
+    } else {
       // Update Password
+      auth().onAuthStateChange(user => {
+        if (user) {
+          user.updatePassword(password).catch(err => {
+            showMessage({
+              message: err.message,
+              type: 'default',
+              backgroundColor: colors.error,
+              color: colors.white,
+            });
+          })
+        }
+      })
     }
   }
 
