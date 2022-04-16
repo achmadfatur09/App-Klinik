@@ -2,12 +2,14 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { Button, Gap, Header, Link } from '../../components';
 import { IconAddPhoto, IconRemovePhoto, ILNullPhoto } from '../../assets';
-import { colors, fonts, storeData} from '../../utils';
+import { colors, fonts, storeData } from '../../utils';
 import * as ImagePicker from 'react-native-image-picker';
 import { showMessage } from 'react-native-flash-message';
 import { getAuth } from '@firebase/auth';
 import { getDatabase, ref, update } from '@firebase/database';
-import { getStorage, ref as refStorage, uploadBytes } from '@firebase/storage';
+import { getStorage, ref as refStorage, uploadBytes, getDownloadURL } from '@firebase/storage';
+import * as RNFS from 'react-native-fs';
+import base64 from 'react-native-base64';
 
 export default function UploadPhoto({ navigation, route }) {
     const { fullName, profession } = route.params;
@@ -28,7 +30,7 @@ export default function UploadPhoto({ navigation, route }) {
                     });
                 } else {
                     // const setPhotoForDB = `data:${response.type};base64, ${response.data}`;
-
+                
                     const source = { uri: response.assets[0].uri };
                     setPhoto(source);
                     setPhotoForDB(response.assets[0])
@@ -46,15 +48,22 @@ export default function UploadPhoto({ navigation, route }) {
 
         const respone = await fetch(photoForDB.uri);
         const blob = await respone.blob();
+        
         uploadBytes(referStorage, blob).then(snapshot => {
             console.log('Uploaded a blob or file!');
-            update(ref(db, 'users/' + uid), {
-                photo: `data:${photoForDB.type};base64, ${photoForDB.uri}`,
+            getDownloadURL(referStorage).then(url => {
+                const imageUrlEncode = base64.encode(url);
+                update(ref(db, 'users/' + uid), {
+                    // photo: {uri:`data:${photoForDB.type};base64,${imageUrlEncode}`},
+                    photo: {uri: imageUrlEncode},
+                })
+                route.params.photo = {uri: base64.decode(imageUrlEncode)};
+                
+                storeData('user', route.params);
+                navigation.replace('MainApp');
             })
-            route.params.photo = `data:${photoForDB.type};base64, ${photoForDB.uri}`;
-            storeData('user', route.params);
         })
-        navigation.replace('MainApp');
+        
     }
     return (
         <View style={styles.page}>
