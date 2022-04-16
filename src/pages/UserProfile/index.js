@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { Header, Profile, List, Gap } from '../../components';
 import { colors, getData, removeData } from '../../utils';
 import { ILNullPhoto } from '../../assets';
-import {getAuth,signOut} from '@firebase/auth';
+import { getAuth, signOut } from '@firebase/auth';
 
 
 export default function UserProfile({ navigation }) {
@@ -23,8 +23,8 @@ export default function UserProfile({ navigation }) {
     const logout = () => {
         const auth = getAuth();
         signOut(auth).then(() => {
-            removeData('user').then((result)=>{
-                console.log('result',result)
+            removeData('user').then((result) => {
+                console.log('result', result)
                 navigation.replace('Splash')
             })
         })
@@ -32,45 +32,47 @@ export default function UserProfile({ navigation }) {
 
     return (
         <View style={styles.page}>
-            <Header
-                title="Profile"
-                onPress={() => navigation.goBack()}
-            />
-            <Gap height={10} />
-            {profile.fullName.length > 0 &&
-                <Profile
-                    name={profile.fullName}
-                    desc={profile.profession}
-                    photo={profile.photo.uri}
-                />}
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <Header
+                    title="Profile"
+                    onPress={() => navigation.goBack()}
+                />
+                <Gap height={10} />
+                {profile.fullName.length > 0 &&
+                    <Profile
+                        name={profile.fullName}
+                        desc={profile.profession}
+                        photo={profile.photo.uri}
+                    />}
 
-            <Gap height={14} />
-            <List
-                name="Edit Profile"
-                desc="Last Update Yesterday"
-                type="next"
-                icon="edit-profile"
-                onPress={() => navigation.navigate('UpdateProfile')}
-            />
-            <List
-                name="Language"
-                desc="Last Update Yesterday"
-                type="next"
-                icon="language"
-            />
-            <List
-                name="Give Us Rate"
-                desc="Last Update Yesterday"
-                type="next"
-                icon="rate"
-            />
-            <List
-                name="Logout"
-                desc="Last Update Yesterday"
-                type="next"
-                icon="help"
-                onPress={logout}
-            />
+                <Gap height={14} />
+                <List
+                    name="Edit Profile"
+                    desc="Last Update Yesterday"
+                    type="next"
+                    icon="edit-profile"
+                    onPress={() => navigation.navigate('UpdateProfile')}
+                />
+                <List
+                    name="Language"
+                    desc="Last Update Yesterday"
+                    type="next"
+                    icon="language"
+                />
+                <List
+                    name="Give Us Rate"
+                    desc="Last Update Yesterday"
+                    type="next"
+                    icon="rate"
+                />
+                <List
+                    name="Logout"
+                    desc="Last Update Yesterday"
+                    type="next"
+                    icon="help"
+                    onPress={logout}
+                />
+            </ScrollView>
         </View>
     )
 }

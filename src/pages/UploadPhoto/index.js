@@ -30,13 +30,14 @@ export default function UploadPhoto({ navigation, route }) {
                     });
                 } else {
                     // const setPhotoForDB = `data:${response.type};base64, ${response.data}`;
-                
+
                     const source = { uri: response.assets[0].uri };
                     setPhoto(source);
                     setPhotoForDB(response.assets[0])
                     setHasPhoto(true);
                 }
-            });
+            },
+        );
     };
 
     const uploadAndContinue = async () => {
@@ -48,21 +49,21 @@ export default function UploadPhoto({ navigation, route }) {
 
         const respone = await fetch(photoForDB.uri);
         const blob = await respone.blob();
-        
+
         uploadBytes(referStorage, blob).then(snapshot => {
             console.log('Uploaded a blob or file!');
             getDownloadURL(referStorage).then(imageUrl => {
                 update(ref(db, 'users/' + uid), {
                     // photo: {uri:`data:${photoForDB.type};base64,${imageUrlEncode}`},
-                    photo: {uri: imageUrl},
+                    photo: { uri: imageUrl },
                 })
-                route.params.photo = {uri: imageUrl};
-                
+                route.params.photo = { uri: imageUrl };
+
                 storeData('user', route.params);
                 navigation.replace('MainApp');
             })
         })
-        
+
     }
     return (
         <View style={styles.page}>
