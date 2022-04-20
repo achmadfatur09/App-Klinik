@@ -24,7 +24,7 @@ export default function MainApp() {
 
 // cd "My Study\Univ Nurdin Hamzah\Semester VIII\Program\MyDoctor"
 
-export default function App() {
+const App = () => {
   return (
     <Provider store={store}>
       <MainApp />
