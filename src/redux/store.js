@@ -1,7 +1,6 @@
 import { createStore } from 'redux';
 
 // const [profile, setProfile] = useState("Achmad");
-
 // setProfile("Faturohman")
 
 const initialState = {
