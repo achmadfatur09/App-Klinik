@@ -2,13 +2,12 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { Button, Gap, Header, Input, Profile } from '../../components';
 import { colors, getData, storeData } from '../../utils';
-// import { showMessage } from '../../utils/showMessage';
 import { showMessage } from 'react-native-flash-message';
 import * as ImagePicker from 'react-native-image-picker';
 import { ILNullPhoto } from '../../assets';
-import {getAuth, updatePassword} from '@firebase/auth';
-import {getDatabase, update, ref } from '@firebase/database';
-import {getStorage, ref as refStorage, uploadBytes, getDownloadURL} from '@firebase/storage';
+import { getAuth, updatePassword } from '@firebase/auth';
+import { getDatabase, update, ref } from '@firebase/database';
+import { getStorage, ref as refStorage, uploadBytes, getDownloadURL } from '@firebase/storage';
 
 export default function UpdateProfile({ navigation }) {
   const [profile, setProfile] = useState({
@@ -34,29 +33,28 @@ export default function UpdateProfile({ navigation }) {
     if (password.length > 0) {
       if (password.length < 6) {
         showMessage({
-          message: 'Opps...Password Kuang Dari 6 Karakter',
+          message: 'Opps...Password Kurang Dari 6 Karakter',
           type: 'default',
           backgroundColor: colors.error,
           color: colors.white,
         });
       } else {
-        updateNewPassword().then(()=>{
+        updateNewPassword().then(() => {
           data.password = password;
           updateProfileData(data);
-        }).catch((err)=>{
+        }).catch((err) => {
           showMessage({
-          message: err.message,
-          type: 'default',
-          backgroundColor: colors.error,
-          color: colors.white,
-        });
+            message: err.message,
+            type: 'default',
+            backgroundColor: colors.error,
+            color: colors.white,
+          });
         })
       }
-      
-        // navigation.replace('MainApp');
+      navigation.replace('MainApp');
     } else {
       updateProfileData(data);
-      // navigation.replace('MainApp');
+      navigation.replace('MainApp');
     }
   };
 
@@ -67,18 +65,17 @@ export default function UpdateProfile({ navigation }) {
     } catch (err) {
       throw new err;
     }
-
   };
 
   const updateProfileData = async (data) => {
-    
+
     const db = getDatabase();
     const uid = getAuth().currentUser.uid;
-    
+
     if (newPhoto) {
       data.photo = await uploadPhoto();
     }
-    
+
     try {
       const updating = await update(ref(db, 'users/' + uid), data);
       if (updating) {
@@ -101,10 +98,10 @@ export default function UpdateProfile({ navigation }) {
     const respone = await fetch(photoForDB.uri);
     const blob = await respone.blob();
     const uploadPhotoBytes = await uploadBytes(referStorage, blob);
-    
-    if(uploadPhotoBytes){
+
+    if (uploadPhotoBytes) {
       console.log('Uploaded a blob or file!');
-      return {uri: await getDownloadURL(referStorage)};
+      return { uri: await getDownloadURL(referStorage) };
     }
     return false
   }
@@ -129,7 +126,6 @@ export default function UpdateProfile({ navigation }) {
             color: colors.white,
           });
         } else {
-          // const setPhotoForDB = `data:${response.type};base64, ${response.data}`;
 
           const source = { uri: response.assets[0].uri };
           setPhoto(source);
@@ -147,8 +143,7 @@ export default function UpdateProfile({ navigation }) {
       />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
-          {/* <Profile isRemove photo={photo} onPress={getImage} /> */}
-          <Profile isRemove onPress={getImage} photo={photo}/>
+          <Profile isRemove onPress={getImage} photo={photo} />
           <Gap height={26} />
           <Input
             label="Full Name"
@@ -176,7 +171,6 @@ export default function UpdateProfile({ navigation }) {
           <Button
             title="Save Profile"
             onPress={updateData}
-            // onPress={() => navigation.goBack('UserProfile')}
           />
         </View>
       </ScrollView>
