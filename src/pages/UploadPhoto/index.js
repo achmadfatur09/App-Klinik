@@ -8,8 +8,6 @@ import { showMessage } from 'react-native-flash-message';
 import { getAuth } from '@firebase/auth';
 import { getDatabase, ref, update } from '@firebase/database';
 import { getStorage, ref as refStorage, uploadBytes, getDownloadURL } from '@firebase/storage';
-import * as RNFS from 'react-native-fs';
-import base64 from 'react-native-base64';
 
 export default function UploadPhoto({ navigation, route }) {
     const { fullName, profession } = route.params;
