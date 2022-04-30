@@ -13,7 +13,7 @@ export default function ListHospital({ type, name, address, pic }) {
             </View>
         </View>
     )
-}
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -39,4 +39,4 @@ const styles = StyleSheet.create({
         color: colors.text.secondary,
         marginTop: 6,
     },
-})
+});

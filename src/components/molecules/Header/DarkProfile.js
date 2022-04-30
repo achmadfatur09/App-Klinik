@@ -19,7 +19,7 @@ export default function DarkProfile({ onPress }) {
             <Image source={DummyDoctor2} style={styles.avatar} />
         </View>
     )
-}
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -53,4 +53,4 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: colors.text.subTitle,
     },
-})
+});

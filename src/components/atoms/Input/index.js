@@ -40,4 +40,4 @@ const styles = StyleSheet.create({
     marginBottom: 6,
     fontFamily: fonts.primary[400],
   }
-})
+});

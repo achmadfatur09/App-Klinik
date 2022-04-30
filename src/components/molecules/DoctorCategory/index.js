@@ -23,7 +23,7 @@ export default function DoctorCategory({ category, onPress }) {
             <Text style={styles.category}>{category}</Text>
         </TouchableOpacity>
     )
-}
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -48,4 +48,4 @@ const styles = StyleSheet.create({
         fontFamily: fonts.primary[600],
         color: colors.text.primary,
     }
-})
+});

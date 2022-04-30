@@ -7,6 +7,6 @@ export default function showMessage() {
       <Text>showMessage</Text>
     </View>
   )
-}
+};
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

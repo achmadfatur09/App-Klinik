@@ -68,4 +68,4 @@ const styles = StyleSheet.create({
     right: 8,
     bottom: 8,
   },
-})
+});

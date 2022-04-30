@@ -15,7 +15,7 @@ export default function Other() {
             </View>
         </View>
     )
-}
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -49,4 +49,4 @@ const styles = StyleSheet.create({
         color: colors.text.secondary,
         marginTop: 8,
     },
-})
+});

@@ -17,7 +17,7 @@ export default function NewsItem() {
       <Image source={DummyNews1} style={styles.image} />
     </View>
   )
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -48,4 +48,4 @@ const styles = StyleSheet.create({
     height: 60,
     borderRadius: 11,
   },
-})
+});

@@ -28,7 +28,6 @@ export default function UploadPhoto({ navigation, route }) {
                     });
                 } else {
                     // const setPhotoForDB = `data:${response.type};base64, ${response.data}`;
-
                     const source = { uri: response.assets[0].uri };
                     setPhoto(source);
                     setPhotoForDB(response.assets[0])
@@ -61,8 +60,7 @@ export default function UploadPhoto({ navigation, route }) {
                 navigation.replace('MainApp');
             })
         })
-
-    }
+    };
     return (
         <View style={styles.page}>
             <Header
@@ -100,7 +98,7 @@ export default function UploadPhoto({ navigation, route }) {
             </View>
         </View>
     )
-}
+};
 
 const styles = StyleSheet.create({
     page: {
@@ -150,4 +148,4 @@ const styles = StyleSheet.create({
         color: colors.text.secondary,
         marginTop: 4,
     }
-})
+});

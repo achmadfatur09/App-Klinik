@@ -29,6 +29,7 @@ export default function Login({ navigation }) {
                 dispatch({ type: 'SET_LOADING', value: false });
 
             })
+
             .catch(err => {
                 console.log('err: ', err);
                 // setLoading(false);
@@ -41,6 +42,7 @@ export default function Login({ navigation }) {
                 })
             });
     };
+
     return (
         <View style={styles.page}>
             <ScrollView showsVerticalScrollIndicator={false}>
@@ -89,4 +91,4 @@ const styles = StyleSheet.create({
         marginBottom: 40,
         maxWidth: 153,
     },
-})
+});

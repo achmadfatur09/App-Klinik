@@ -4,7 +4,6 @@ import { DummyHospital1, DummyHospital2, DummyHospital3, ILHospitalBG } from '..
 import { colors, fonts } from '../../utils';
 import { ListHospital } from '../../components';
 
-
 export default function Hospitals() {
   return (
     <View style={styles.page} >
@@ -32,7 +31,7 @@ export default function Hospitals() {
       </View>
     </View>
   )
-}
+};
 
 const styles = StyleSheet.create({
   page: {
@@ -63,4 +62,4 @@ const styles = StyleSheet.create({
     marginTop: -30,
     paddingTop: 14,
   },
-})
+});

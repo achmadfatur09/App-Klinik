@@ -34,7 +34,7 @@ export default function HomeProfile({ onPress }) {
             </View>
         </TouchableOpacity>
     )
-}
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -59,4 +59,4 @@ const styles = StyleSheet.create({
         color: colors.text.secondary,
         textTransform: 'capitalize',
     },
-})
+});

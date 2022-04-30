@@ -9,7 +9,7 @@ export default function ProfileItem({ label, value }) {
             <Text style={styles.value}>{value}</Text>
         </View>
     )
-}
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -28,4 +28,4 @@ const styles = StyleSheet.create({
         fontFamily: fonts.primary.normal,
         color: colors.text.primary,
     },
-})
+});

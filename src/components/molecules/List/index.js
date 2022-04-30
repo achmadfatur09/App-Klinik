@@ -25,6 +25,7 @@ export default function List({ profile, name, desc, type, onPress, icon }) {
         }
         return <IconEditProfile />
     }
+
     return (
         <TouchableOpacity style={styles.container} onPress={onPress}>
             {icon ? <Icon /> : <Image source={profile} style={styles.avatar} />}
@@ -41,7 +42,7 @@ export default function List({ profile, name, desc, type, onPress, icon }) {
             }
         </TouchableOpacity>
     )
-}
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -72,4 +73,4 @@ const styles = StyleSheet.create({
         fontFamily: fonts.primary[300],
         color: colors.text.secondary,
     },
-})
+});

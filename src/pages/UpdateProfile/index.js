@@ -89,7 +89,7 @@ export default function UpdateProfile({ navigation }) {
         collor: colors.white,
       });
     }
-  }
+  };
 
   const uploadPhoto = async () => {
     const storage = getStorage();
@@ -134,7 +134,7 @@ export default function UpdateProfile({ navigation }) {
         }
       },
     )
-  }
+  };
   return (
     <View style={styles.page}>
       <Header
@@ -176,7 +176,7 @@ export default function UpdateProfile({ navigation }) {
       </ScrollView>
     </View>
   )
-}
+};
 
 const styles = StyleSheet.create({
   page: {

@@ -11,7 +11,7 @@ export default function IsMe() {
             <Text style={styles.date}>4.20 AM</Text>
         </View>
     )
-}
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -38,4 +38,4 @@ const styles = StyleSheet.create({
         color: colors.text.secondary,
         marginTop: 8,
     },
-})
+});

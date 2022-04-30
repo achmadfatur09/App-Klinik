@@ -14,7 +14,7 @@ export default function Loading() {
       </View>
     </>
   )
-}
+};
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -32,4 +32,4 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary[600],
     marginTop: 16,
   },
-})
+});

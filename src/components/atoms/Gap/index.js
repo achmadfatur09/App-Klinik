@@ -6,7 +6,6 @@ export default function Gap({ height, width }) {
         <View style={{
             height: height,
             width: width,
-        }}
-        />
+        }} />
     );
 };

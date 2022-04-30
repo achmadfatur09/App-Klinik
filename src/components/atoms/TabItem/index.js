@@ -32,7 +32,7 @@ export default function TabItem({ title, active, onPress, onLongPress }) {
       <Text style={styles.text(active)}>{title}</Text>
     </TouchableOpacity>
   )
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -46,4 +46,4 @@ const styles = StyleSheet.create({
       marginTop: 4,
     }
   ),
-})
+});

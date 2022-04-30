@@ -25,7 +25,6 @@ export default function Register({ navigation }) {
         //     console.log('data: ', res);
         // });
         storeData('user', data);
-
     }
 
     const onContinue = () => {
@@ -109,4 +108,4 @@ const styles = StyleSheet.create({
         padding: 40,
         paddingTop: 0,
     }
-})
+});

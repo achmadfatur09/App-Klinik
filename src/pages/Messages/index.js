@@ -24,7 +24,7 @@ export default function Messages({navigation}) {
       name: 'Sayyid',
       desc: 'Apa ada yang bisa saya bantu..',
     }
-  ])
+  ]);
   return (
     <View style={styles.page}>
       <View style={styles.content}>
@@ -45,7 +45,7 @@ export default function Messages({navigation}) {
       </View>
     </View>
   )
-}
+};
 
 const styles = StyleSheet.create({
   page: {
@@ -65,4 +65,4 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginLeft: 16,
   },
-})
+});

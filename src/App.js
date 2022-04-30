@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import Router from './router';
-import FlashMessage from "react-native-flash-message";
 import { Loading } from './components';
 import { Provider, useSelector } from 'react-redux';
+import Router from './router';
+import FlashMessage from "react-native-flash-message";
 import store from './redux/store';
 require('./config/firebase');
 
@@ -22,7 +22,12 @@ export default function MainApp() {
   );
 };
 
+
 // cd "My Study\Univ Nurdin Hamzah\Semester VIII\Program\MyDoctor"
+// set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+// Get-ExecutionPolicy
+// Get-ExecutionPolicy -list
+
 
 const App = () => {
   return (

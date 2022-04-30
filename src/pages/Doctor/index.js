@@ -79,7 +79,7 @@ export default function Doctor({ navigation }) {
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   page: {

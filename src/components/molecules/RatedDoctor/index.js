@@ -20,7 +20,7 @@ export default function RatedDoctor({ name, desc, avatar, onPress }) {
       </View>
     </TouchableOpacity>
   )
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -52,4 +52,4 @@ const styles = StyleSheet.create({
     color: colors.text.secondary,
     marginTop: 2,
   },
-})
+});

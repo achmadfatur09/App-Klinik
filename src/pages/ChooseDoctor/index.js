@@ -45,11 +45,11 @@ export default function ChooseDoctor({ navigation }) {
             />
         </View>
     )
-}
+};
 
 const styles = StyleSheet.create({
     page: {
         backgroundColor: colors.white,
         flex: 1,
     },
-})
+});
