@@ -22,7 +22,6 @@ export default function MainApp() {
   );
 };
 
-
 // cd "My Study\Univ Nurdin Hamzah\Semester VIII\Program\MyDoctor"
 // set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 // Get-ExecutionPolicy
