@@ -14,6 +14,7 @@ import {
     UserProfile,
     UpdateProfile,
     DoctorProfile,
+    Antrian,
 } from "../pages";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { BottomNavigator } from "../components";
@@ -27,6 +28,10 @@ const MainApp = () => {
             <Tab.Screen
                 name="Doctor"
                 component={Doctor}
+                options={{ headerShown: false }} />
+            <Tab.Screen
+                name="Antrian"
+                component={Antrian}
                 options={{ headerShown: false }} />
             <Tab.Screen
                 name="Messages"

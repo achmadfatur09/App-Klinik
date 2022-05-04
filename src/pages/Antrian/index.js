@@ -1,33 +1,28 @@
 import { StyleSheet, Text, View, ImageBackground } from 'react-native';
 import React from 'react';
-import { DummyHospital1, DummyHospital2, DummyHospital3, ILHospitalBG } from '../../assets';
+import { ILHospitalBG } from '../../assets';
 import { colors, fonts } from '../../utils';
-import { ListHospital } from '../../components';
+import { Button, Gap, ListAntrian } from '../../components';
 
-export default function Hospitals() {
+export default function Antrian() {
   return (
     <View style={styles.page} >
       <ImageBackground source={ILHospitalBG} style={styles.background}>
         <Text style={styles.title}>Kinik drg. Sri Wulansari</Text>
-        <Text style={styles.desc}>3 Tersedia</Text>
+        <Text style={styles.desc}>Jl. Sunan Giri, Suka Karya,</Text>
+        <Text style={styles.desc}>Kec. Kota Baru, Kota Jambi, Jambi 36129</Text>
       </ImageBackground>
       <View style={styles.content}>
-        <ListHospital
-          type="Rumah Sakit"
-          name="Rumah Sakit Bayangkara"
-          address="Jl. Sunan Giri, Kota Jambi"
-          pic={DummyHospital1}
+        <ListAntrian
+          text="Nomer Antrian"
+          number="09"
+          name="Achmad Faturohman"
+          pekerjaan="Mahasiswa"
         />
-        <ListHospital
-          type="Rumah Sakit Anak"
-          name="Rumah Sakit Raden Mattaher"
-          address="Jl. Sunan Giri, Kota Jambi"
-          pic={DummyHospital2} />
-        <ListHospital
-          type="Rumah Sakit Umum"
-          name="Rumah Sakit Abdul Manap"
-          address="Jl. Sunan Giri, Kota Jambi"
-          pic={DummyHospital3} />
+        <Gap height={100} />
+        <Text style={styles.note}>
+          Terima Kasih Atas Kunjungan Anda.
+        </Text>
       </View>
     </View>
   )
@@ -45,13 +40,20 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontFamily: fonts.primary[600],
-    color: colors.white,
+    color: colors.secondary,
     textAlign: 'center',
   },
   desc: {
-    fontSize: 14,
+    fontSize: 12,
     fontFamily: fonts.primary[300],
-    color: colors.white,
+    color: colors.secondary,
+    marginTop: 6,
+    textAlign: 'center',
+  },
+  note: {
+    fontSize: 20,
+    fontFamily: fonts.primary[300],
+    color: colors.secondary,
     marginTop: 6,
     textAlign: 'center',
   },

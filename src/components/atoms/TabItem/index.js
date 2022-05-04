@@ -15,6 +15,9 @@ export default function TabItem({ title, active, onPress, onLongPress }) {
     if (title === 'Doctor') {
       return active ? <IconDoctorActive /> : <IconDoctor />
     }
+    if (title === 'Antrian') {
+      return active ? <IconDoctorActive /> : <IconDoctor />
+    }
     if (title === 'Messages') {
       return active ? <IconMessagesActive /> : <IconMessages />
     }

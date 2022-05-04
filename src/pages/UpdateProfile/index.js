@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { Button, Gap, Header, Input, Profile } from '../../components';
-import { colors, getData, storeData } from '../../utils';
+import { colors, getData, showError, storeData } from '../../utils';
 import { showMessage } from 'react-native-flash-message';
 import * as ImagePicker from 'react-native-image-picker';
 import { ILNullPhoto } from '../../assets';
@@ -32,12 +32,7 @@ export default function UpdateProfile({ navigation }) {
     const data = profile;
     if (password.length > 0) {
       if (password.length < 6) {
-        showMessage({
-          message: 'Opps...Password Kurang Dari 6 Karakter',
-          type: 'default',
-          backgroundColor: colors.error,
-          color: colors.white,
-        });
+        showError('Opps...Password Kurang Dari 6 Karakter');
       } else {
         updateNewPassword().then(() => {
           data.password = password;
@@ -82,12 +77,7 @@ export default function UpdateProfile({ navigation }) {
         storeData('user', data);
       }
     } catch (err) {
-      showMessage({
-        message: err.message,
-        type: 'default',
-        backgroundColor: colors.error,
-        collor: colors.white,
-      });
+      showError(err.message);
     }
   };
 
@@ -100,7 +90,7 @@ export default function UpdateProfile({ navigation }) {
     const uploadPhotoBytes = await uploadBytes(referStorage, blob);
 
     if (uploadPhotoBytes) {
-      console.log('Uploaded a blob or file!');
+      // console.log('Uploaded a blob or file!');
       return { uri: await getDownloadURL(referStorage) };
     }
     return false
@@ -117,7 +107,7 @@ export default function UpdateProfile({ navigation }) {
     ImagePicker.launchImageLibrary(
       { mediaTypes: 'Images', quality: 0.5, maxWidth: 200, maxHeight: 200 },
       response => {
-        console.log('respone: ', response);
+        // console.log('respone: ', response);
         if (response.didCancel || response.error) {
           showMessage({
             message: 'opps, seperinya tidak jadi memilih foto',

@@ -4,6 +4,7 @@ import Register from './Register';
 import Login from './Login';
 import UploadPhoto from './UploadPhoto';
 import Doctor from './Doctor';
+import Antrian from './Antrian';
 import Messages from './Messages';
 import Hospitals from './Hospitals';
 import ChooseDoctor from './ChooseDoctor';
@@ -19,6 +20,7 @@ export {
   Login,
   UploadPhoto,
   Doctor,
+  Antrian,
   Messages,
   Hospitals,
   ChooseDoctor,
