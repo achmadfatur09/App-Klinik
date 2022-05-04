@@ -23,6 +23,10 @@ export default function Antrian() {
         <Text style={styles.note}>
           Terima Kasih Atas Kunjungan Anda.
         </Text>
+        <View style={styles.action}>
+          <Button title="Klik Untuk Antrian"
+          />
+        </View>
       </View>
     </View>
   )
@@ -63,5 +67,9 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: -30,
     paddingTop: 14,
+  },
+  action: {
+    paddingHorizontal: 40,
+    paddingTop: 23,
   },
 });

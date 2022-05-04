@@ -4,7 +4,6 @@ import { Button, Gap, Header, Input, Loading } from '../../components';
 import { colors, showError, storeData, useForm } from '../../utils';
 import { getAuth, createUserWithEmailAndPassword } from '@firebase/auth';
 import { getDatabase, ref, set } from '@firebase/database';
-import { showMessage } from "react-native-flash-message";
 
 export default function Register({ navigation }) {
 

@@ -27,9 +27,7 @@ export default function Login({ navigation }) {
                 })
                 setLoading(false);
                 // dispatch({ type: 'SET_LOADING', value: false });
-
             })
-
             .catch(err => {
                 setLoading(false);
                 // dispatch({ type: 'SET_LOADING', value: false });
