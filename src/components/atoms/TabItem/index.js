@@ -3,6 +3,8 @@ import React from 'react';
 import {
   IconDoctor,
   IconDoctorActive,
+  IconAntrian,
+  IconAntrianActive,
   IconHospitals,
   IconHospitalsActive,
   IconMessages,
@@ -16,7 +18,7 @@ export default function TabItem({ title, active, onPress, onLongPress }) {
       return active ? <IconDoctorActive /> : <IconDoctor />
     }
     if (title === 'Antrian') {
-      return active ? <IconDoctorActive /> : <IconDoctor />
+      return active ? <IconAntrianActive /> : <IconAntrian />
     }
     if (title === 'Messages') {
       return active ? <IconMessagesActive /> : <IconMessages />

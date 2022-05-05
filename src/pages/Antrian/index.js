@@ -42,13 +42,13 @@ const styles = StyleSheet.create({
     paddingTop: 30,
   },
   title: {
-    fontSize: 20,
+    fontSize: 25,
     fontFamily: fonts.primary[600],
     color: colors.secondary,
     textAlign: 'center',
   },
   desc: {
-    fontSize: 12,
+    fontSize: 15,
     fontFamily: fonts.primary[300],
     color: colors.secondary,
     marginTop: 6,

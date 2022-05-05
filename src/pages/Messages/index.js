@@ -4,7 +4,7 @@ import { List } from '../../components';
 import { colors, fonts } from '../../utils';
 import { DummyDoctor4, DummyDoctor5, DummyDoctor6 } from '../../assets';
 
-export default function Messages({navigation}) {
+export default function Messages({ navigation }) {
   const [doctors] = useState([
     {
       id: 1,
@@ -33,7 +33,7 @@ export default function Messages({navigation}) {
           doctors.map(doctor => {
             return (
               <List
-              key={doctor.id}
+                key={doctor.id}
                 profile={doctor.profile}
                 name={doctor.name}
                 desc={doctor.desc}
