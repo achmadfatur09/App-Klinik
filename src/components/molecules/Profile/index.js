@@ -34,8 +34,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   avatar: {
-    width: 110,
-    height: 110,
+    width: 115,
+    height: 115,
     borderRadius: 110 / 2,
   },
   borderProfile: {

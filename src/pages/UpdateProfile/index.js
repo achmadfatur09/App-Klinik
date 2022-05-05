@@ -12,7 +12,10 @@ import { getStorage, ref as refStorage, uploadBytes, getDownloadURL } from '@fir
 export default function UpdateProfile({ navigation }) {
   const [profile, setProfile] = useState({
     fullName: '',
+    umur: '',
     profession: '',
+    alamat: '',
+    noHp: '',
     email: '',
   });
   const [newPhoto, setNewPhoto] = useState(false);
@@ -46,10 +49,10 @@ export default function UpdateProfile({ navigation }) {
           });
         })
       }
-      navigation.replace('MainApp');
+      navigation.replace('UserProfile');
     } else {
       updateProfileData(data);
-      navigation.replace('MainApp');
+      navigation.replace('UserProfile');
     }
   };
 
@@ -105,7 +108,7 @@ export default function UpdateProfile({ navigation }) {
 
   const getImage = () => {
     ImagePicker.launchImageLibrary(
-      { mediaTypes: 'Images', quality: 0.5, maxWidth: 200, maxHeight: 200 },
+      { mediaTypes: 'Images', quality: 0.2, maxWidth: 200, maxHeight: 200 },
       response => {
         // console.log('respone: ', response);
         if (response.didCancel || response.error) {
@@ -134,23 +137,37 @@ export default function UpdateProfile({ navigation }) {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
           <Profile isRemove onPress={getImage} photo={photo} />
-          <Gap height={26} />
+          <Gap height={5} />
           <Input
             label="Full Name"
             value={profile.fullName}
             onChangeText={(value) => changeText('fullName', value)} />
-          <Gap height={24} />
+          <Gap height={2} />
+          <Input
+            label="Umur"
+            value={profile.umur}
+            onChangeText={(value) => changeText('umur', value)} />
+          <Gap height={2} />
           <Input
             label="Pekerjaan"
             value={profile.profession}
-            onChangeText={(value) => changeText('profession', value)}
-          />
-          <Gap height={24} />
+            onChangeText={(value) => changeText('profession', value)} />
+          <Gap height={2} />
+          <Input
+            label="Alamat"
+            value={profile.alamat}
+            onChangeText={(value) => changeText('alamat', value)} />
+          <Gap height={2} />
+          <Input
+            label="No HP"
+            value={profile.noHp}
+            onChangeText={(value) => changeText('noHp', value)} />
+          <Gap height={2} />
           <Input
             label="Email"
             value={profile.email} disable
           />
-          <Gap height={24} />
+          <Gap height={2} />
           <Input
             label="Password"
             secureTextEntry
