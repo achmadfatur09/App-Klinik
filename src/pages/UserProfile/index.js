@@ -48,7 +48,7 @@ export default function UserProfile({ navigation }) {
                 <Gap height={14} />
                 <List
                     name="Edit Profile"
-                    desc="Last Update Yesterday"
+                    desc="name, age, profession, address, phone, password"
                     type="next"
                     icon="edit-profile"
                     onPress={() => navigation.navigate('UpdateProfile')}
@@ -67,7 +67,7 @@ export default function UserProfile({ navigation }) {
                 />
                 <List
                     name="Sign Out"
-                    desc="Last Update Yesterday"
+                    desc="press to exit the app"
                     type="next"
                     icon="help"
                     onPress={logout}
