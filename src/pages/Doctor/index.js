@@ -1,13 +1,14 @@
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   DoctorCategory,
   Gap,
   HomeProfile,
   NewsItem,
-  RatedDoctor
+  RatedDoctor,
+  Loading
 } from '../../components';
-import { colors, fonts, getData } from '../../utils';
+import { colors, fonts} from '../../utils';
 import {
   JSONCategoryDoctor,
   DummyDoctor1,
@@ -15,10 +16,31 @@ import {
   DummyDoctor3,
 } from '../../assets';
 
+import {getDatabase, ref, get} from 'firebase/database';
+
 export default function Doctor({ navigation }) {
+  const [blog, setBlog] = useState();
+  const [loadingBlog, setLoadingBlog] = useState(true);
+
   useEffect(() => {
-    getData('user').then(res => {
-      console.log('data user: ', res);
+    const db = getDatabase();
+    const refDb = ref(db, 'news');
+
+    get(refDb).then((snapshot) => {
+
+      if (snapshot.exists()) {
+        let data = [];
+        snapshot.forEach((item) => {
+          data.push(item);
+        })   
+        setBlog(data);    
+      } else {
+        console.log("No data available");
+      }
+
+      setLoadingBlog(false)
+    }).catch((error) => {
+      console.error(error);
     });
   }, []);
 
@@ -42,8 +64,7 @@ export default function Doctor({ navigation }) {
                       category={item.category}
                       onPress={() => navigation.navigate('ChooseDoctor')}
                     />
-                  }
-                  )
+                  })
                 }
                 <Gap width={22} />
               </View>
@@ -71,9 +92,18 @@ export default function Doctor({ navigation }) {
             />
             <Text style={styles.sectionLabel}>Good News</Text>
           </View>
-          <NewsItem />
-          <NewsItem />
-          <NewsItem />
+          <View>
+            {loadingBlog && <Loading />}
+            {
+              blog.map((item) => {
+                return <NewsItem 
+                  blog={item.val()}
+                  key={item.key}
+                />
+              })
+            }
+
+          </View>
           <Gap height={30} />
         </ScrollView>
       </View>

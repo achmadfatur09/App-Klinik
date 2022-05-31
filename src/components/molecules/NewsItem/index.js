@@ -1,20 +1,19 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
 import React from 'react';
-import { DummyNews1 } from '../../../assets';
 import { colors, fonts } from '../../../utils';
 
-export default function NewsItem() {
+export default function NewsItem({blog}) {
   return (
     <View style={styles.container}>
       <View style={styles.titleWrapper}>
         <Text style={styles.title}>
-          Semoga Hari Mu Selalu Bahagia Kawan.
+          {blog.title}
         </Text>
         <Text style={styles.date}>
-          Today
+          {blog.date}
         </Text>
       </View>
-      <Image source={DummyNews1} style={styles.image} />
+      <Image source={{uri:blog.image}} style={styles.image} />
     </View>
   )
 }
