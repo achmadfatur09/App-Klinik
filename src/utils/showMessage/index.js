@@ -1,12 +1,21 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import {showMessage} from 'react-native-flash-message';
+import {colors} from '../colors';
+// import {useDispatch} from 'react-redux';
 
-export default function showMessage() {
-  return (
-    <View>
-      <Text>showMessage</Text>
-    </View>
-  )
-}
+export const showError = message => {
+  showMessage({
+    message: message,
+    type: 'default',
+    backgroundColor: colors.error,
+    color: colors.white,
+  });
+};
 
-const styles = StyleSheet.create({})
+export const showSuccess = message => {
+  showMessage({
+    message: message,
+    type: 'default',
+    backgroundColor: colors.primary,
+    color: colors.white,
+  });
+};

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { Header, Profile, List, Gap } from '../../components';
 import { colors, getData, removeData } from '../../utils';
@@ -25,10 +25,10 @@ export default function UserProfile({ navigation }) {
         signOut(auth).then(() => {
             removeData('user').then((result) => {
                 console.log('result', result)
-                navigation.replace('Splash')
+                navigation.replace('GetStarted')
             })
         })
-    }
+    };
 
     return (
         <View style={styles.page}>
@@ -48,7 +48,7 @@ export default function UserProfile({ navigation }) {
                 <Gap height={14} />
                 <List
                     name="Edit Profile"
-                    desc="Last Update Yesterday"
+                    desc="name, age, profession, address, phone, password"
                     type="next"
                     icon="edit-profile"
                     onPress={() => navigation.navigate('UpdateProfile')}
@@ -66,8 +66,8 @@ export default function UserProfile({ navigation }) {
                     icon="rate"
                 />
                 <List
-                    name="Logout"
-                    desc="Last Update Yesterday"
+                    name="Sign Out"
+                    desc="press to exit the app"
                     type="next"
                     icon="help"
                     onPress={logout}

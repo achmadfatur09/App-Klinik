@@ -2,41 +2,39 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import { ILLogo } from '../../assets';
 import { Button, Gap, Input, Link, Loading } from '../../components';
-import { colors, fonts, storeData, useForm } from '../../utils';
+import { colors, fonts, showError, showSuccess, storeData, useForm } from '../../utils';
 import { getAuth, signInWithEmailAndPassword } from '@firebase/auth';
-import {getDatabase, ref, get } from '@firebase/database';
+import { getDatabase, ref, get } from '@firebase/database';
 import { showMessage } from 'react-native-flash-message';
+// import { useDispatch, useSelector } from 'react-redux';
 
 export default function Login({ navigation }) {
     const [form, setForm] = useForm({ email: '', password: '' });
     const [loading, setLoading] = useState(false);
+    // const stateGlobal = useSelector(state => state);
+    // const dispatch = useDispatch
 
     const login = () => {
-        console.log('form: ', form);
         setLoading(true);
+        // dispatch({ type: 'SET_LOADING', value: true });
         const auth = getAuth();
         signInWithEmailAndPassword(auth, form.email, form.password)
             .then(res => {
-                console.log('success: ', res);
                 const db = getDatabase();
-                get(ref(db, 'users/'+ auth.currentUser.uid)).then((snapshot) => {
+                get(ref(db, 'users/' + auth.currentUser.uid)).then((snapshot) => {
                     storeData('user', snapshot.val())
                     navigation.replace('MainApp');
                 })
                 setLoading(false);
-
+                // dispatch({ type: 'SET_LOADING', value: false });
             })
             .catch(err => {
-                console.log('err: ', err);
                 setLoading(false);
-                showMessage({
-                    message: err.message,
-                    type: 'default',
-                    backgroundColor: colors.error,
-                    color: colors.white,
-                })
+                // dispatch({ type: 'SET_LOADING', value: false });
+                showError(err.message);
             });
     };
+
     return (
         <>
             <View style={styles.page}>
@@ -88,4 +86,4 @@ const styles = StyleSheet.create({
         marginBottom: 40,
         maxWidth: 153,
     },
-})
+});

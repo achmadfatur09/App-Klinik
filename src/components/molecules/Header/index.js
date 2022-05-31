@@ -19,7 +19,7 @@ export default function Header({ onPress, title, type }) {
       <Gap height={24} />
     </View>
   )
-}
+};
 
 const styles = StyleSheet.create({
   container: (type) => (

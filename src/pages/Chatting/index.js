@@ -20,7 +20,7 @@ export default function Chatting({ navigation }) {
             <InputChat />
         </View>
     )
-}
+};
 
 const styles = StyleSheet.create({
     page: {
@@ -37,4 +37,4 @@ const styles = StyleSheet.create({
         marginVertical: 20,
         textAlign: 'center',
     },
-})
+});

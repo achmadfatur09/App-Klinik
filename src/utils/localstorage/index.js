@@ -26,4 +26,4 @@ export const removeData = async (key) => {
   } catch (e) {
     return false;
   }
-}
+};

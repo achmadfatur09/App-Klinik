@@ -13,7 +13,7 @@ export default function InputChat() {
             <Button type="btn-icon-send" />
         </View>
     )
-}
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -30,4 +30,4 @@ const styles = StyleSheet.create({
         fontFamily: fonts.primary.normal,
         maxHeight: 45,
     },
-})
+});

@@ -1,21 +1,38 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { Loading } from './components';
+// import { Provider, useSelector } from 'react-redux';
 import Router from './router';
 import FlashMessage from "react-native-flash-message";
+// import store from './redux/store';
 require('./config/firebase');
 
-export default function App() {
+export default function MainApp() {
+  const [loading, setLoading] = useState(false);
+  // const stateGlobal = useSelector(state => state);
   return (
     <>
       <NavigationContainer>
         <Router />
       </NavigationContainer>
       <FlashMessage position="top" />
+      {/* {stateGlobal.loading && <Loading />} */}
+      {loading && <Loading />}
     </>
   );
 };
 
-// cd "My Study\Univ Nurdin Hamzah\Semester VIII\Program\MyDoctor"
+// const App = () => {
+//   return (
+//     <Provider store={store}>
+//       <MainApp />
+//     </Provider>
+//   );
+// };
+
+// set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+// Get-ExecutionPolicy
+// Get-ExecutionPolicy -list
 
 const styles = StyleSheet.create({});

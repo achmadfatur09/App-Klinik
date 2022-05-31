@@ -32,7 +32,7 @@ export default function HomeProfile({ onPress }) {
             </View>
         </TouchableOpacity>
     )
-}
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -46,15 +46,15 @@ const styles = StyleSheet.create({
         margin: 12,
     },
     name: {
-        fontSize: 16,
+        fontSize: 18,
         fontFamily: fonts.primary[600],
         color: colors.text.primary,
         textTransform: 'capitalize',
     },
     profession: {
-        fontSize: 12,
+        fontSize: 14,
         fontFamily: fonts.primary[400],
         color: colors.text.secondary,
         textTransform: 'capitalize',
     },
-})
+});

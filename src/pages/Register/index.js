@@ -1,10 +1,9 @@
 import { StyleSheet, View, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import { Button, Gap, Header, Input, Loading } from '../../components';
-import { colors, storeData, useForm } from '../../utils';
+import { colors, showError, storeData, useForm } from '../../utils';
 import { getAuth, createUserWithEmailAndPassword } from '@firebase/auth';
 import { getDatabase, ref, set } from '@firebase/database';
-import { showMessage } from "react-native-flash-message";
 
 export default function Register({ navigation }) {
 
@@ -20,13 +19,8 @@ export default function Register({ navigation }) {
     function writerUserData(data, uid) {
         const db = getDatabase();
         set(ref(db, 'users/'+uid), data);
-
-        // getData('user').then(res => {
-        //     console.log('data: ', res);
-        // });
         storeData('user', data);
-
-    }
+    };
 
     const onContinue = () => {
 
@@ -37,21 +31,13 @@ export default function Register({ navigation }) {
                 const uid = auth.currentUser.uid
                 setLoading(false);
                 setForm('reset');
-                console.log('register success: ', success);
                 writerUserData(form, uid);
                 navigation.navigate('UploadPhoto', form);
             })
             .catch((error) => {
                 const errorMessage = error.message;
                 setLoading(false);
-                showMessage({
-                    // message: errorMessage,
-                    message: 'The email address is already in use by another account.',
-                    type: 'default',
-                    backgroundColor: colors.error,
-                    color: colors.white,
-                });
-                console.log('error: ', error);
+                showError('The email address is already in use by another account.');
             });
     };
     return (
@@ -109,4 +95,4 @@ const styles = StyleSheet.create({
         padding: 40,
         paddingTop: 0,
     }
-})
+});

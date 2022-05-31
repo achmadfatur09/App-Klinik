@@ -49,7 +49,7 @@ export default function BottomNavigator({ state, descriptors, navigation }) {
             })}
         </View>
     )
-}
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -59,4 +59,4 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         backgroundColor: colors.secondary,
     },
-})
+});

@@ -17,4 +17,4 @@ export default function IconOnly({ onPress, icon }) {
       <Icon />
     </TouchableOpacity>
   )
-}
+};

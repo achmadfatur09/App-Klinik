@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
   input: (border) => ({
     borderWidth: 1,
     borderColor: border,
+    color: colors.text.secondary,
     borderRadius: 10,
     padding: 12,
   }),
@@ -40,4 +41,4 @@ const styles = StyleSheet.create({
     marginBottom: 6,
     fontFamily: fonts.primary[400],
   }
-})
+});

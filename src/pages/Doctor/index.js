@@ -8,40 +8,28 @@ import {
   RatedDoctor,
   Loading
 } from '../../components';
-import { colors, fonts} from '../../utils';
+import { colors, fonts, getData, showError } from '../../utils';
 import {
   JSONCategoryDoctor,
   DummyDoctor1,
   DummyDoctor2,
   DummyDoctor3,
 } from '../../assets';
+import { getDatabase, ref, get } from '@firebase/database';
 
-import {getDatabase, ref, get} from 'firebase/database';
 
 export default function Doctor({ navigation }) {
-  const [blog, setBlog] = useState();
-  const [loadingBlog, setLoadingBlog] = useState(true);
-
+  const [news, setNews] = useState([]);
   useEffect(() => {
     const db = getDatabase();
-    const refDb = ref(db, 'news');
-
-    get(refDb).then((snapshot) => {
-
-      if (snapshot.exists()) {
-        let data = [];
-        snapshot.forEach((item) => {
-          data.push(item);
-        })   
-        setBlog(data);    
-      } else {
-        console.log("No data available");
+    get(ref(db, 'news/')).then(res => {
+      console.log('data: ');
+      if (res.val()) {
+        setNews(res.val());
       }
-
-      setLoadingBlog(false)
-    }).catch((error) => {
-      console.error(error);
-    });
+    }).catch(err => {
+      showError(err.message);
+    })
   }, []);
 
   return (
@@ -92,24 +80,22 @@ export default function Doctor({ navigation }) {
             />
             <Text style={styles.sectionLabel}>Good News</Text>
           </View>
-          <View>
-            {loadingBlog && <Loading />}
-            {
-              blog.map((item) => {
-                return <NewsItem 
-                  blog={item.val()}
-                  key={item.key}
-                />
-              })
-            }
-
-          </View>
+          {news.map(item => {
+            return (
+              <NewsItem
+                key={item.id}
+                title={item.title}
+                date={item.date}
+                image={item.image}
+              />
+            )
+          })}
           <Gap height={30} />
         </ScrollView>
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   page: {

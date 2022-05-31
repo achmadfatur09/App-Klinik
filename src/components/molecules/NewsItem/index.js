@@ -2,21 +2,17 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import React from 'react';
 import { colors, fonts } from '../../../utils';
 
-export default function NewsItem({blog}) {
+export default function NewsItem({ title, date, image }) {
   return (
     <View style={styles.container}>
       <View style={styles.titleWrapper}>
-        <Text style={styles.title}>
-          {blog.title}
-        </Text>
-        <Text style={styles.date}>
-          {blog.date}
-        </Text>
+        <Text style={styles.title}> {title} </Text>
+        <Text style={styles.date}> {date} </Text>
       </View>
-      <Image source={{uri:blog.image}} style={styles.image} />
+      <Image source={{uri: image}} style={styles.image} />
     </View>
   )
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -47,4 +43,4 @@ const styles = StyleSheet.create({
     height: 60,
     borderRadius: 11,
   },
-})
+});

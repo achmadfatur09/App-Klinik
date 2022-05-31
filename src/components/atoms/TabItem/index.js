@@ -3,6 +3,8 @@ import React from 'react';
 import {
   IconDoctor,
   IconDoctorActive,
+  IconAntrian,
+  IconAntrianActive,
   IconHospitals,
   IconHospitalsActive,
   IconMessages,
@@ -14,6 +16,9 @@ export default function TabItem({ title, active, onPress, onLongPress }) {
   const Icon = () => {
     if (title === 'Doctor') {
       return active ? <IconDoctorActive /> : <IconDoctor />
+    }
+    if (title === 'Antrian') {
+      return active ? <IconAntrianActive /> : <IconAntrian />
     }
     if (title === 'Messages') {
       return active ? <IconMessagesActive /> : <IconMessages />
@@ -32,7 +37,7 @@ export default function TabItem({ title, active, onPress, onLongPress }) {
       <Text style={styles.text(active)}>{title}</Text>
     </TouchableOpacity>
   )
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -46,4 +51,4 @@ const styles = StyleSheet.create({
       marginTop: 4,
     }
   ),
-})
+});
