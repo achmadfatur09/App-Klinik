@@ -10,7 +10,7 @@ export default function DocterProfile({ navigation , route}) {
   
   useEffect(() => {
     const db = getDatabase();
-    get(ref(db, 'dokter/'+id)).then(res => {
+    get(ref(db, 'docter/'+id)).then(res => {
       if (res.val()) {
         setDoctor(res.val());
       }

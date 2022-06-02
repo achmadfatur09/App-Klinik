@@ -2,15 +2,17 @@ import { StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { ChatItem, Header, InputChat } from '../../components';
 import { colors, fonts, showError } from '../../utils';
+import { getAuth} from '@firebase/auth';
 import { getDatabase, ref, get } from '@firebase/database';
 
 export default function Chatting({ navigation, route }) {
     const {id} = route.params;
+    const auth = getAuth();
     const [doctor, setDoctor] = useState([]);
+    const db = getDatabase();
     
     useEffect(() => {
-        const db = getDatabase();
-        get(ref(db, 'dokter/'+id)).then(res => {
+        get(ref(db, 'docter/'+id)).then(res => {
         if (res.val()) {
             setDoctor(res.val());
         }
@@ -18,6 +20,18 @@ export default function Chatting({ navigation, route }) {
         showError(err.message);
         })
     }, [])
+
+    useEffect(() => {
+        get(ref(db, 'chats/')).then(res => {
+        if (res.val()) {
+            setDoctor(res.val());
+        }
+        }).catch(err => {
+        showError(err.message);
+        })
+    }, [])
+
+    
 
     return (
         <View style={styles.page}>

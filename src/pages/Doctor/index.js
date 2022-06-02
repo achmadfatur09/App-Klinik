@@ -26,7 +26,7 @@ export default function Doctor({ navigation }) {
   useEffect(() => {
     
     get(ref(db, 'news/')).then(res => {
-      // console.log('data: ',res);
+      console.log('data: ',res);
       if (res.val()) {
         setNews(res.val());
       }
@@ -36,7 +36,7 @@ export default function Doctor({ navigation }) {
   }, []);
 
   useEffect(() => {
-    get(ref(db, 'dokter/')).then(res => {
+    get(ref(db, 'docter/')).then(res => {
       // console.log('data: ',res);
       let data = []
       if (res.val()) {
