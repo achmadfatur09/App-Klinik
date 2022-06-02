@@ -19,11 +19,14 @@ import { getDatabase, ref, get } from '@firebase/database';
 
 
 export default function Doctor({ navigation }) {
+  const db = getDatabase();
   const [news, setNews] = useState([]);
+  const [doctor, setDoctor] = useState([]);
+
   useEffect(() => {
-    const db = getDatabase();
+    
     get(ref(db, 'news/')).then(res => {
-      console.log('data: ');
+      // console.log('data: ',res);
       if (res.val()) {
         setNews(res.val());
       }
@@ -31,6 +34,19 @@ export default function Doctor({ navigation }) {
       showError(err.message);
     })
   }, []);
+
+  useEffect(() => {
+    get(ref(db, 'dokter/')).then(res => {
+      // console.log('data: ',res);
+      let data = []
+      if (res.val()) {
+        res.forEach(v => data.push(v))
+        setDoctor(data);
+      }
+    }).catch(err => {
+      showError(err.message);
+    })
+  }, [])
 
   return (
     <View style={styles.page}>
@@ -60,24 +76,20 @@ export default function Doctor({ navigation }) {
           </View>
           <View style={styles.wrapperSection}>
             <Text style={styles.sectionLabel}>Top Rated Doctors</Text>
-            <RatedDoctor
-              name="Achmad Faturohman"
-              desc="Pedriatrician"
-              avatar={DummyDoctor1}
-              onPress={() => navigation.navigate('DocterProfile')}
-            />
-            <RatedDoctor
-              name="Nurin Naila"
-              desc="Dentist"
-              avatar={DummyDoctor2}
-              onPress={() => navigation.navigate('DocterProfile')}
-            />
-            <RatedDoctor
-              name="Sayyid"
-              desc="Podriatrist"
-              avatar={DummyDoctor3}
-              onPress={() => navigation.navigate('DocterProfile')}
-            />
+            {
+              doctor.map(i => {
+                return (
+                  <RatedDoctor
+                    name={i.val().nama}
+                    desc={i.val().pekerjaan}
+                    avatar={DummyDoctor1}
+                    onPress={() => navigation.navigate('DocterProfile',{id:i.key})}
+                  />
+                )
+              })
+              
+            }
+
             <Text style={styles.sectionLabel}>Good News</Text>
           </View>
           {news.map(item => {
