@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
         marginRight: 10,
         fontSize: 14,
         fontFamily: fonts.primary.normal,
+        color: colors.text.primary,
         maxHeight: 45,
     },
 });
