@@ -14,6 +14,7 @@ export default function UserProfile({ navigation }) {
     });
     useEffect(() => {
         getData('user').then(res => {
+            console.log(res)
             const data = res;
             data.photo = { uri: (data.photo === undefined) ? ILNullPhoto : data.photo };
             setProfile(data);

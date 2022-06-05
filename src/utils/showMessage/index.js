@@ -1,6 +1,6 @@
 import {showMessage} from 'react-native-flash-message';
 import {colors} from '../colors';
-import {useDispatch} from 'react-redux';
+// import {useDispatch} from 'react-redux';
 
 export const showError = message => {
   showMessage({

@@ -6,7 +6,7 @@ import { colors, fonts, showError, showSuccess, storeData, useForm } from '../..
 import { getAuth, signInWithEmailAndPassword } from '@firebase/auth';
 import { getDatabase, ref, get } from '@firebase/database';
 import { showMessage } from 'react-native-flash-message';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 
 export default function Login({ navigation }) {
     const [form, setForm] = useForm({ email: '', password: '' });

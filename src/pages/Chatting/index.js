@@ -1,14 +1,43 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ChatItem, Header, InputChat } from '../../components';
-import { colors, fonts } from '../../utils';
+import { colors, fonts, showError } from '../../utils';
+import { getAuth} from '@firebase/auth';
+import { getDatabase, ref, get } from '@firebase/database';
 
-export default function Chatting({ navigation }) {
+export default function Chatting({ navigation, route }) {
+    const {id} = route.params;
+    const auth = getAuth();
+    const [doctor, setDoctor] = useState([]);
+    const db = getDatabase();
+    
+    useEffect(() => {
+        get(ref(db, 'docter/'+id)).then(res => {
+        if (res.val()) {
+            setDoctor(res.val());
+        }
+        }).catch(err => {
+        showError(err.message);
+        })
+    }, [])
+
+    useEffect(() => {
+        get(ref(db, 'chats/')).then(res => {
+        if (res.val()) {
+            setDoctor(res.val());
+        }
+        }).catch(err => {
+        showError(err.message);
+        })
+    }, [])
+
+    
+
     return (
         <View style={styles.page}>
             <Header
                 type="dark-profile"
-                title="Achmad Faturohman"
+                title={doctor.nama}
                 onPress={() => navigation.goBack()}
             />
             <Text style={styles.chatDate}>Senin, 4 April 2022</Text>
