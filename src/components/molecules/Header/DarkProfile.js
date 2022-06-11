@@ -4,7 +4,7 @@ import { colors, fonts } from '../../../utils';
 import { DummyDoctor2 } from '../../../assets';
 import { Button } from '../../atoms';
 
-export default function DarkProfile({ onPress }) {
+export default function DarkProfile({title, pekerjaan, onPress }) {
     return (
         <View style={styles.container}>
             <Button
@@ -13,8 +13,8 @@ export default function DarkProfile({ onPress }) {
                 onPress={onPress}
             />
             <View style={styles.content}>
-                <Text style={styles.name}>Achmad Faturohman</Text>
-                <Text style={styles.desc}>Developers</Text>
+                <Text style={styles.name}>{title}</Text>
+                <Text style={styles.desc}>{pekerjaan}</Text>
             </View>
             <Image source={DummyDoctor2} style={styles.avatar} />
         </View>

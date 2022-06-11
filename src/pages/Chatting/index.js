@@ -3,12 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { ChatItem, Header, InputChat } from '../../components';
 import { colors, fonts, showError } from '../../utils';
 import { getAuth} from '@firebase/auth';
-import { getDatabase, ref, get } from '@firebase/database';
+import { getDatabase, ref, get, onValue } from '@firebase/database';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default function Chatting({ navigation, route }) {
     const {id} = route.params;
     const auth = getAuth();
     const [doctor, setDoctor] = useState([]);
+    const [chat, setChat] = useState([]);
     const db = getDatabase();
     
     useEffect(() => {
@@ -22,31 +24,44 @@ export default function Chatting({ navigation, route }) {
     }, [])
 
     useEffect(() => {
-        get(ref(db, 'chats/')).then(res => {
-        if (res.val()) {
-            setDoctor(res.val());
-        }
-        }).catch(err => {
-        showError(err.message);
+        onValue(ref(db, 'chats/'),(snapshot) => {
+            let data = []
+            snapshot.forEach(i=> {
+                if(i.val().sender == auth.currentUser.uid && i.val().receiver == id || i.val().sender == id && i.val().receiver == auth.currentUser.uid){
+                    data.push(i);
+                }
+            })
+            setChat(data);
         })
-    }, [])
-
+    },[])
     
-
     return (
         <View style={styles.page}>
             <Header
                 type="dark-profile"
                 title={doctor.nama}
+                pekerjaan={doctor.pekerjaan}
                 onPress={() => navigation.goBack()}
             />
-            <Text style={styles.chatDate}>Senin, 4 April 2022</Text>
-            <View style={styles.content}>
-                <ChatItem isMe />
-                <ChatItem />
-                <ChatItem isMe />
-            </View>
-            <InputChat />
+            {/* <Text style={styles.chatDate}>Senin, 4 April 2022</Text> */}
+            <ScrollView>
+                <View style={styles.content}>
+                {
+                    chat.map(i=> {
+                        const {message, receiver, sender} = i.val();
+                        
+                        return (
+                            (sender == auth.currentUser.uid) ?
+                                <ChatItem key={i.key}  isMe message={message} />
+                                : <ChatItem key={i.key} message={message} />
+                            )
+                    })
+                }
+                
+                
+                </View>
+            </ScrollView>
+            <InputChat sender={auth.currentUser.uid} receiver={id}/>
         </View>
     )
 };

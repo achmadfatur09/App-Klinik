@@ -2,13 +2,13 @@ import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { colors, fonts } from '../../../utils';
 
-export default function IsMe() {
+export default function IsMe({message}) {
     return (
         <View style={styles.container}>
             <View style={styles.chatContent}>
-                <Text style={styles.text}>Ibu dokter, apakah memakan jeruk tiap hari itu buruk ?</Text>
+                <Text style={styles.text}>{message}</Text>
             </View>
-            <Text style={styles.date}>4.20 AM</Text>
+            {/* <Text style={styles.date}>4.20 AM</Text> */}
         </View>
     )
 };
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     },
     chatContent: {
         padding: 12,
-        paddingRight: 18,
+        // paddingRight: 18,
         backgroundColor: colors.cardLight,
         maxWidth: '80%',
         borderRadius: 10,

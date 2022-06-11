@@ -3,15 +3,15 @@ import React from 'react';
 import { colors, fonts } from '../../../utils';
 import { DummyDoctor9 } from '../../../assets';
 
-export default function Other() {
+export default function Other({message}) {
     return (
         <View style={styles.container}>
-            <Image source={DummyDoctor9} style={styles.avatar} />
+            {/* <Image source={DummyDoctor9} style={styles.avatar} /> */}
             <View>
                 <View style={styles.chatContent}>
-                    <Text style={styles.text}>Ibu dokter, apakah memakan jeruk tiap hari itu buruk ?</Text>
+                    <Text style={styles.text}>{message}</Text>
                 </View>
-                <Text style={styles.date}>4.20 AM</Text>
+                {/* <Text style={styles.date}>4.20 AM</Text> */}
             </View>
         </View>
     )
@@ -20,9 +20,8 @@ export default function Other() {
 const styles = StyleSheet.create({
     container: {
         marginBottom: 20,
-        alignItems: 'flex-end',
+        alignItems: 'flex-start',
         paddingLeft: 16,
-        flexDirection: 'row',
     },
     avatar: {
         height: 30,
@@ -32,9 +31,9 @@ const styles = StyleSheet.create({
     },
     chatContent: {
         padding: 12,
-        paddingRight: 18,
+        // paddingLeft: 18,
         backgroundColor: colors.primary,
-        maxWidth: '85%',
+        maxWidth: '80%',
         borderRadius: 10,
         borderBottomLeftRadius: 0,
     },
