@@ -47,7 +47,7 @@ export default function UserProfile({ navigation }) {
                         desc={profile.profession}
                         photo={profile.photo.uri}
                     /> :
-                    profile.nama.length > 0 &&
+                    
                     <Profile
                         name={profile.nama}
                         desc={profile.pekerjaan}

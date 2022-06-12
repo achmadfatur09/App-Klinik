@@ -4,9 +4,9 @@ import { Button, Gap } from '../../atoms';
 import { colors, fonts } from '../../../utils';
 import DarkProfile from './DarkProfile';
 
-export default function Header({ onPress, title, pekerjaan, type }) {
+export default function Header({photo, onPress, title, pekerjaan, type }) {
   if (type === 'dark-profile') {
-    return <DarkProfile title={title} pekerjaan={pekerjaan} onPress={onPress} />;
+    return <DarkProfile photo={photo} title={title} pekerjaan={pekerjaan} onPress={onPress} />;
   }
   return (
     <View style={styles.container(type)}>

@@ -12,23 +12,32 @@ export default function Messages({ navigation }) {
   
   const db = getDatabase();
   
-    // chatlist user to docter
+    // chatlist docter to user
     useEffect(()=>{
 
-      const reference = ref(db, 'chatlist/' + getAuth().currentUser.uid );
+      const reference = ref(db, 'chatlist/' );
+      let data = [];
       onValue(reference,(snapshot)=> {
-        setChatlist(snapshot);
+        snapshot.forEach(i => {
+          i.forEach(v => {
+            if(v.key == getAuth().currentUser.uid){
+              data.push(i)
+            }
+          })
+        })
+        setChatlist(data);
       })
     },[])
+    // console.log(chatlist)
 
     // list user to docter
     useEffect(()=>{
       let data = []
-      onValue(ref(db, 'docter/'),(snapshot) => {
+      onValue(ref(db, 'users/'),(snapshot) => {
         
         snapshot.forEach((snp) => {
           chatlist.forEach((i)=> {
-            if(i.val().id == snp.key){
+            if(i.key == snp.key){
               data.push(snp)
             }
           })
@@ -47,10 +56,10 @@ export default function Messages({ navigation }) {
             return (
               <List
                 key={docter.key}
-                profile={DummyDoctor4}  
-                name={docter.val().nama}
-                desc={docter.val().pekerjaan}
-                onPress={() => navigation.navigate('Chatting', {id:docter.key})}
+                profile={docter.val().photo}  
+                name={docter.val().fullName}
+                desc={docter.val().profession}
+                onPress={() => navigation.navigate('ChattingDocter', {id:docter.key})}
               />
             );
           })

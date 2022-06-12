@@ -8,9 +8,11 @@ import {
     UploadPhoto,
     Doctor,
     Messages,
+    MessagesDoctor,
     Hospitals,
     ChooseDoctor,
     Chatting,
+    ChattingDocter,
     UserProfile,
     UpdateProfile,
     DoctorProfile,
@@ -45,11 +47,20 @@ const MainApp = () => {
                     options={{ headerShown: false }} /> 
             }
             
-            <Tab.Screen
-                name="Messages"
-                component={Messages}
-                options={{ headerShown: false }}
-            />
+            {
+                profile.role == 3 ?
+                <Tab.Screen
+                    name="Messages"
+                    component={Messages}
+                    options={{ headerShown: false }}
+                    />
+                : 
+                <Tab.Screen
+                    name="Messages"
+                    component={MessagesDoctor}
+                    options={{ headerShown: false }}
+                    />
+            }
             <Tab.Screen
                 name="Hospitals"
                 component={Hospitals}
@@ -100,6 +111,11 @@ const Router = () => {
             <Stack.Screen
                 name="Chatting"
                 component={Chatting}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="ChattingDocter"
+                component={ChattingDocter}
                 options={{ headerShown: false }}
             />
             <Stack.Screen
