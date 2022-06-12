@@ -72,7 +72,7 @@ export default function Doctor({ navigation }) {
                     return <DoctorCategory
                       key={item.id}
                       category={item.category}
-                      onPress={() => navigation.navigate('ChooseDoctor')}
+                      onPress={() => navigation.navigate('ChooseDoctor', {category:item.category})}
                     />
                   })
                 }
@@ -86,6 +86,7 @@ export default function Doctor({ navigation }) {
               doctor.map(i => {
                 return (
                   <RatedDoctor
+                    key={i.key}
                     name={i.val().nama}
                     desc={i.val().pekerjaan}
                     avatar={DummyDoctor1}
@@ -102,7 +103,7 @@ export default function Doctor({ navigation }) {
             news.map(item => {
               return (
                 <NewsItem
-                  key={item.val().key}
+                  key={item.key}
                   title={item.val().title}
                   date={item.val().date}
                   image={item.val().image}

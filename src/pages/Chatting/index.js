@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { ChatItem, Header, InputChat } from '../../components';
 import { colors, fonts, showError } from '../../utils';
 import { getAuth} from '@firebase/auth';
@@ -12,6 +12,7 @@ export default function Chatting({ navigation, route }) {
     const [doctor, setDoctor] = useState([]);
     const [chat, setChat] = useState([]);
     const db = getDatabase();
+    const scrollViewRef = useRef();
     
     useEffect(() => {
         get(ref(db, 'docter/'+id)).then(res => {
@@ -44,11 +45,14 @@ export default function Chatting({ navigation, route }) {
                 onPress={() => navigation.goBack()}
             />
             {/* <Text style={styles.chatDate}>Senin, 4 April 2022</Text> */}
-            <ScrollView>
+            <ScrollView 
+                ref={scrollViewRef}
+                onContentSizeChange={() => scrollViewRef.current.scrollToEnd({animated:true})}
+                >
                 <View style={styles.content}>
                 {
                     chat.map(i=> {
-                        const {message, receiver, sender} = i.val();
+                        const {message, sender} = i.val();
                         
                         return (
                             (sender == auth.currentUser.uid) ?
@@ -57,7 +61,6 @@ export default function Chatting({ navigation, route }) {
                             )
                     })
                 }
-                
                 
                 </View>
             </ScrollView>
