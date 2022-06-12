@@ -1,12 +1,14 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+export const getChatTime = date => {
+  const hour = date.getHours();
+  const minutes = date.getMinutes();
 
-export default function Date() {
-  return (
-    <View>
-      <Text>Date</Text>
-    </View>
-  )
-}
+  return `${hour}:${minutes} ${hour >= 12 ? 'PM' : 'AM'}`;
+};
 
-const styles = StyleSheet.create({})
+export const setDateChat = oldDate => {
+  const year = oldDate.getFullYear();
+  const month = oldDate.getMonth() + 1;
+  const date = oldDate.getDate();
+
+  return `${year}-${month}-${date}`;
+};
