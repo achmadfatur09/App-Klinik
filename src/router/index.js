@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
     GetStarted,
@@ -18,21 +18,33 @@ import {
 } from "../pages";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { BottomNavigator } from "../components";
+import { getData } from '../utils';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const MainApp = () => {
+    const [profile, setProfile] = useState({});
+    useEffect(() => {
+        getData('user').then(res => {
+            const data = res;
+            setProfile(data);
+        });
+    }, [])
     return (
         <Tab.Navigator tabBar={props => <BottomNavigator {...props} />}>
             <Tab.Screen
                 name="Doctor"
                 component={Doctor}
                 options={{ headerShown: false }} />
-            <Tab.Screen
-                name="Antrian"
-                component={Antrian}
-                options={{ headerShown: false }} />
+            {
+                profile.role == 3 &&
+                <Tab.Screen
+                    name="Antrian"
+                    component={Antrian}
+                    options={{ headerShown: false }} /> 
+            }
+            
             <Tab.Screen
                 name="Messages"
                 component={Messages}
