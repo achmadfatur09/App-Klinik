@@ -27,8 +27,8 @@ export default function HomeProfile({ onPress }) {
                 style={styles.avatar}
             />
             <View>
-                <Text style={styles.name}>{profile.fullName}</Text>
-                <Text style={styles.profession}>{profile.profession}</Text>
+                <Text style={styles.name}>{profile.role == 3 ? profile.fullName : profile.nama}</Text>
+                <Text style={styles.profession}>{profile.role == 3 ? profile.profession : profile.pekerjaan}</Text>
             </View>
         </TouchableOpacity>
     )

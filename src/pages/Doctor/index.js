@@ -74,25 +74,30 @@ export default function Doctor({ navigation }) {
               <Text style={styles.welcome}>Mau Konsultasi Dengan Siapa Hari Ini ?</Text>
             }
           </View>
-          <View style={styles.wrapperScroll}>
-            <ScrollView horizontal showsHorizontalScrollIndicator={false} >
-              <View style={styles.category}>
-                <Gap width={32} />
-                {
-                  JSONCategoryDoctor.data.map(item => {
-                    return <DoctorCategory
-                      key={item.id}
-                      category={item.category}
-                      onPress={() => navigation.navigate('ChooseDoctor', {category:item.category})}
-                    />
-                  })
-                }
-                <Gap width={22} />
-              </View>
-            </ScrollView>
-          </View>
+          {
+            profile.role == 3 &&
+            <View style={styles.wrapperScroll}>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false} >
+                <View style={styles.category}>
+                  <Gap width={32} />
+                  {
+                    JSONCategoryDoctor.data.map(item => {
+                      return <DoctorCategory
+                        key={item.id}
+                        category={item.category}
+                        onPress={() => navigation.navigate('ChooseDoctor', {category:item.category})}
+                      />
+                    })
+                  }
+                  <Gap width={22} />
+                </View>
+              </ScrollView>
+            </View>
+          }
           
-          <View style={styles.wrapperSection}>
+          {
+            profile.role == 3 &&
+            <View style={styles.wrapperSection}>
             <Text style={styles.sectionLabel}>Top Rated Doctors</Text>
             {
               doctor.map(i => {
@@ -110,6 +115,7 @@ export default function Doctor({ navigation }) {
             }
 
           </View>
+          }
           <View style={styles.wrapperSection}>
             <Text style={styles.sectionLabel}>Good News</Text>
           </View>
