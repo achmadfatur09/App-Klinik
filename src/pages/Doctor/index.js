@@ -26,9 +26,11 @@ export default function Doctor({ navigation }) {
   useEffect(() => {
     
     get(ref(db, 'news/')).then(res => {
-      console.log('data: ',res);
+      // console.log('data: ',res);
+      let data = []
       if (res.val()) {
-        setNews(res.val());
+        res.forEach(v => data.push(v))
+        setNews(data);
       }
     }).catch(err => {
       showError(err.message);
@@ -37,16 +39,20 @@ export default function Doctor({ navigation }) {
 
   useEffect(() => {
     get(ref(db, 'docter/')).then(res => {
-      // console.log('data: ',res);
+      console.log('data: ',res);
       let data = []
       if (res.val()) {
-        res.forEach(v => data.push(v))
+        res.forEach(v => {
+          data.push(v);
+        })
         setDoctor(data);
       }
     }).catch(err => {
       showError(err.message);
     })
   }, [])
+
+  // console.log(doctor)
 
   return (
     <View style={styles.page}>
@@ -92,16 +98,18 @@ export default function Doctor({ navigation }) {
 
             <Text style={styles.sectionLabel}>Good News</Text>
           </View>
-          {news.map(item => {
-            return (
-              <NewsItem
-                key={item.id}
-                title={item.title}
-                date={item.date}
-                image={item.image}
-              />
-            )
-          })}
+          {
+            news.map(item => {
+              return (
+                <NewsItem
+                  key={item.val().key}
+                  title={item.val().title}
+                  date={item.val().date}
+                  image={item.val().image}
+                />
+              )
+            })
+          }
           <Gap height={30} />
         </ScrollView>
       </View>

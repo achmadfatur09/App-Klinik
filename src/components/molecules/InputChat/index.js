@@ -1,16 +1,39 @@
 import { StyleSheet, View, TextInput } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import { colors, fonts } from '../../../utils';
 import { Button } from '../../atoms';
+import { getDatabase, ref, push, get, set } from '@firebase/database';
 
-export default function InputChat() {
+export default function InputChat({sender, receiver}) {
+    const [form] = useState({
+        sender : sender,
+        receiver : receiver
+    });
+    const [message, setMessage] = useState({})
+
+    const sendChat = () => {
+        const data = {...form, ...message};
+        const db = getDatabase();
+        push(ref(db, 'chats/'), data)
+        setMessage('')
+
+        get(ref(db, 'chatlist/'+ sender + '/' + receiver)).then((snapshot) => {
+            if(!snapshot.exists()){
+                set(ref(db, 'chatlist/'+ sender + '/' + receiver), {id:receiver})
+            }
+        })
+    }
+
     return (
         <View style={styles.container}>
             <TextInput
                 style={styles.input}
+                value={message}
+                onChangeText={(value) => setMessage({message : value})}
                 placeholder="Tulis Pesan Untuk Anda"
+
             />
-            <Button type="btn-icon-send" />
+            <Button onPress={sendChat} title="Kirim"/>
         </View>
     )
 };
