@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useState, useRef } from 'react';
-import { ChatItem, Header, InputChat } from '../../components';
+import { ChatItem, Gap, Header, InputChat } from '../../components';
 import { colors, fonts, showError } from '../../utils';
 import { getAuth} from '@firebase/auth';
 import { getDatabase, ref, get, onValue } from '@firebase/database';

@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { List } from '../../components';
 import { colors, fonts, getData } from '../../utils';
-import { DummyDoctor4, DummyDoctor5, DummyDoctor6 } from '../../assets';
+import { DummyDoctor3, DummyDoctor4, DummyDoctor5, DummyDoctor6 } from '../../assets';
 import { getAuth} from '@firebase/auth';
 import { getDatabase, ref, onValue } from '@firebase/database';
 
@@ -47,7 +47,7 @@ export default function Messages({ navigation }) {
             return (
               <List
                 key={docter.key}
-                profile={DummyDoctor4}  
+                profile={DummyDoctor3}  
                 name={docter.val().nama}
                 desc={docter.val().pekerjaan}
                 onPress={() => navigation.navigate('Chatting', {id:docter.key})}

@@ -34,7 +34,8 @@ export default function DocterProfile({ navigation , route}) {
         />
         <ProfileItem
           label="Tempat Praktik"
-          value="Klinik drg. Sri Wulansari"
+          // value="Klinik drg. Sri Wulansari"
+          value={doctor.tempat_praktik}
         />
         <ProfileItem
           label="No. STR"
