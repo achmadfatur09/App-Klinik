@@ -6,9 +6,11 @@ import UploadPhoto from './UploadPhoto';
 import Doctor from './Doctor';
 import Antrian from './Antrian';
 import Messages from './Messages';
+import MessagesDoctor from './MessagesDocter';
 import Hospitals from './Hospitals';
 import ChooseDoctor from './ChooseDoctor';
 import Chatting from './Chatting';
+import ChattingDocter from './ChattingDocter';
 import UserProfile from './UserProfile';
 import UpdateProfile from './UpdateProfile';
 import DoctorProfile from './DoctorProfile';
@@ -22,9 +24,11 @@ export {
   Doctor,
   Antrian,
   Messages,
+  MessagesDoctor,
   Hospitals,
   ChooseDoctor,
   Chatting,
+  ChattingDocter,
   UserProfile,
   UpdateProfile,
   DoctorProfile,

@@ -39,12 +39,22 @@ export default function UserProfile({ navigation }) {
                     onPress={() => navigation.goBack()}
                 />
                 <Gap height={10} />
-                {profile.fullName.length > 0 &&
+                {
+                    profile.role == 3 ?
+                    profile.fullName.length > 0 &&
                     <Profile
                         name={profile.fullName}
                         desc={profile.profession}
                         photo={profile.photo.uri}
-                    />}
+                    /> :
+                    
+                    <Profile
+                        name={profile.nama}
+                        desc={profile.pekerjaan}
+                        photo={profile.photo.uri}
+                    />
+
+                }
 
                 <Gap height={14} />
                 <List

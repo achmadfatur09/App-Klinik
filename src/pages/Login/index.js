@@ -19,12 +19,25 @@ export default function Login({ navigation }) {
         // dispatch({ type: 'SET_LOADING', value: true });
         const auth = getAuth();
         signInWithEmailAndPassword(auth, form.email, form.password)
-            .then(res => {
+            .then(async res => {
                 const db = getDatabase();
-                get(ref(db, 'users/' + auth.currentUser.uid)).then((snapshot) => {
-                    storeData('user', snapshot.val())
-                    navigation.replace('MainApp');
-                })
+                const user = await get(ref(db, 'users/' + auth.currentUser.uid));
+                const docter = await get(ref(db, 'docter/' + auth.currentUser.uid));
+                let data = {};
+                if (user.exists()) {
+                    data = {
+                        ...user.val(),
+                        role:3
+                    }
+                }else if (docter.exists()) {
+                    data = {
+                        ...docter.val(),
+                        role:2
+                    }
+                }
+                storeData('user', data)
+                navigation.replace('MainApp');
+                
                 setLoading(false);
                 // dispatch({ type: 'SET_LOADING', value: false });
             })

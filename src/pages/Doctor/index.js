@@ -23,6 +23,14 @@ export default function Doctor({ navigation }) {
   const [news, setNews] = useState([]);
   const [doctor, setDoctor] = useState([]);
 
+  const [profile, setProfile] = useState({});
+    useEffect(() => {
+        getData('user').then(res => {
+            const data = res;
+            setProfile(data);
+        });
+    }, [])
+
   useEffect(() => {
     
     get(ref(db, 'news/')).then(res => {
@@ -61,31 +69,41 @@ export default function Doctor({ navigation }) {
           <View style={styles.wrapperSection}>
             <Gap height={30} />
             <HomeProfile onPress={() => navigation.navigate('UserProfile')} />
-            <Text style={styles.welcome}>Mau Konsultasi Dengan Siapa Hari Ini ?</Text>
+            {
+              profile.role == 3 &&
+              <Text style={styles.welcome}>Mau Konsultasi Dengan Siapa Hari Ini ?</Text>
+            }
           </View>
-          <View style={styles.wrapperScroll}>
-            <ScrollView horizontal showsHorizontalScrollIndicator={false} >
-              <View style={styles.category}>
-                <Gap width={32} />
-                {
-                  JSONCategoryDoctor.data.map(item => {
-                    return <DoctorCategory
-                      key={item.id}
-                      category={item.category}
-                      onPress={() => navigation.navigate('ChooseDoctor')}
-                    />
-                  })
-                }
-                <Gap width={22} />
-              </View>
-            </ScrollView>
-          </View>
-          <View style={styles.wrapperSection}>
+          {
+            profile.role == 3 &&
+            <View style={styles.wrapperScroll}>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false} >
+                <View style={styles.category}>
+                  <Gap width={32} />
+                  {
+                    JSONCategoryDoctor.data.map(item => {
+                      return <DoctorCategory
+                        key={item.id}
+                        category={item.category}
+                        onPress={() => navigation.navigate('ChooseDoctor', {category:item.category})}
+                      />
+                    })
+                  }
+                  <Gap width={22} />
+                </View>
+              </ScrollView>
+            </View>
+          }
+          
+          {
+            profile.role == 3 &&
+            <View style={styles.wrapperSection}>
             <Text style={styles.sectionLabel}>Top Rated Doctors</Text>
             {
               doctor.map(i => {
                 return (
                   <RatedDoctor
+                    key={i.key}
                     name={i.val().nama}
                     desc={i.val().pekerjaan}
                     avatar={DummyDoctor1}
@@ -96,20 +114,23 @@ export default function Doctor({ navigation }) {
               
             }
 
+          </View>
+          }
+          <View style={styles.wrapperSection}>
             <Text style={styles.sectionLabel}>Good News</Text>
           </View>
-          {
-            news.map(item => {
-              return (
-                <NewsItem
-                  key={item.val().key}
-                  title={item.val().title}
-                  date={item.val().date}
-                  image={item.val().image}
-                />
-              )
-            })
-          }
+            {
+              news.map(item => {
+                return (
+                  <NewsItem
+                    key={item.key}
+                    title={item.val().title}
+                    date={item.val().date}
+                    image={item.val().image}
+                  />
+                )
+              })
+            }
           <Gap height={30} />
         </ScrollView>
       </View>

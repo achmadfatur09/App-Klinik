@@ -15,7 +15,7 @@ export default function Chatting({ navigation, route }) {
     const scrollViewRef = useRef();
     
     useEffect(() => {
-        get(ref(db, 'docter/'+id)).then(res => {
+        get(ref(db, 'users/'+id)).then(res => {
         if (res.val()) {
             setDoctor(res.val());
         }
@@ -40,8 +40,9 @@ export default function Chatting({ navigation, route }) {
         <View style={styles.page}>
             <Header
                 type="dark-profile"
-                title={doctor.nama}
-                pekerjaan={doctor.pekerjaan}
+                photo={doctor.photo}
+                title={doctor.fullName}
+                pekerjaan={doctor.profession}
                 onPress={() => navigation.goBack()}
             />
             {/* <Text style={styles.chatDate}>Senin, 4 April 2022</Text> */}
