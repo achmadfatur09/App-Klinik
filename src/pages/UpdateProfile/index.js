@@ -12,10 +12,7 @@ import { getStorage, ref as refStorage, uploadBytes, getDownloadURL } from '@fir
 export default function UpdateProfile({ navigation }) {
   const [profile, setProfile] = useState({
     fullName: '',
-    umur: '',
     profession: '',
-    alamat: '',
-    noHp: '',
     email: '',
   });
   const [newPhoto, setNewPhoto] = useState(false);
@@ -144,24 +141,9 @@ export default function UpdateProfile({ navigation }) {
             onChangeText={(value) => changeText('fullName', value)} />
           <Gap height={2} />
           <Input
-            label="Umur"
-            value={profile.umur}
-            onChangeText={(value) => changeText('umur', value)} />
-          <Gap height={2} />
-          <Input
             label="Pekerjaan"
             value={profile.profession}
             onChangeText={(value) => changeText('profession', value)} />
-          <Gap height={2} />
-          <Input
-            label="Alamat"
-            value={profile.alamat}
-            onChangeText={(value) => changeText('alamat', value)} />
-          <Gap height={2} />
-          <Input
-            label="No HP"
-            value={profile.noHp}
-            onChangeText={(value) => changeText('noHp', value)} />
           <Gap height={2} />
           <Input
             label="Email"

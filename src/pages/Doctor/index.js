@@ -127,6 +127,7 @@ export default function Doctor({ navigation }) {
                     title={item.val().title}
                     date={item.val().date}
                     image={item.val().image}
+                    onPress={() => navigation.navigate('Content',{id:i.key})}
                   />
                 )
               })
