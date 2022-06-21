@@ -24,6 +24,7 @@ export default function DocterProfile({ navigation , route}) {
       <View style={styles.page}>
         <Header title="Doktor Profile" onPress={() => navigation.goBack()} />
         <Profile
+          photo={{uri:doctor.photo}}
           name={doctor.nama}
           desc={doctor.pekerjaan}
         />

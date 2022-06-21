@@ -47,7 +47,7 @@ export default function Messages({ navigation }) {
             return (
               <List
                 key={docter.key}
-                profile={DummyDoctor3}  
+                profile={{uri: docter.val().photo}}  
                 name={docter.val().nama}
                 desc={docter.val().pekerjaan}
                 onPress={() => navigation.navigate('Chatting', {id:docter.key})}

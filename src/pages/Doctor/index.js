@@ -60,8 +60,6 @@ export default function Doctor({ navigation }) {
     })
   }, [])
 
-  // console.log(doctor)
-
   return (
     <View style={styles.page}>
       <View style={styles.content}>
@@ -106,7 +104,7 @@ export default function Doctor({ navigation }) {
                     key={i.key}
                     name={i.val().nama}
                     desc={i.val().pekerjaan}
-                    avatar={DummyDoctor1}
+                    avatar={i.val().photo}
                     onPress={() => navigation.navigate('DocterProfile',{id:i.key})}
                   />
                 )
@@ -127,7 +125,7 @@ export default function Doctor({ navigation }) {
                     title={item.val().title}
                     date={item.val().date}
                     image={item.val().image}
-                    onPress={() => navigation.navigate('Content',{id:i.key})}
+                    onPress={() => navigation.navigate('Content',{id:item.key})}
                   />
                 )
               })
