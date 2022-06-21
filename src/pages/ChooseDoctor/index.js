@@ -41,7 +41,7 @@ export default function ChooseDoctor({ navigation, route }) {
                         <List
                             key={i.key}
                             type="next"
-                            profile={DummyDoctor1}
+                            profile={{uri:i.val().photo}}
                             name={i.val().nama}
                             desc={i.val().pekerjaan}
                             onPress={() => navigation.navigate('Chatting',{id:i.key})}

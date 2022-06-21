@@ -13,7 +13,7 @@ export default function HomeProfile({ onPress }) {
     useEffect(() => {
         getData('user').then(res => {
             const data = res;
-            data.photo = { uri: (data.photo === undefined) ? ILNullPhoto : data.photo };
+            data.photo = data.role == 3 ? { uri: (data.photo === undefined) ? ILNullPhoto : data.photo } : {uri : {uri:data.photo}};
             setProfile(res);
         }).catch(e => {
 

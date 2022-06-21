@@ -6,7 +6,7 @@ import { colors, fonts } from '../../../utils';
 export default function RatedDoctor({ name, desc, avatar, onPress }) {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Image source={avatar} style={styles.avatar} />
+      <Image source={{uri:avatar}} style={styles.avatar} />
       <View style={styles.profile}>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.category}>{desc}</Text>

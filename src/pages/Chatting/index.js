@@ -39,6 +39,7 @@ export default function Chatting({ navigation, route }) {
     return (
         <View style={styles.page}>
             <Header
+                photo={{uri:doctor.photo}}
                 type="dark-profile"
                 title={doctor.nama}
                 pekerjaan={doctor.pekerjaan}

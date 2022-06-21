@@ -24,9 +24,16 @@ export default function InputChat({sender, receiver}) {
         })
     }
 
+    let numOfLinesCompany = 0;
+
     return (
         <View style={styles.container}>
             <TextInput
+                multiline={true}
+                numberOfLines={numOfLinesCompany}
+                onContentSizeChange={(e)=>{
+                    numOfLinesCompany = e.nativeEvent.contentSize.height/18
+                }}
                 style={styles.input}
                 value={message}
                 onChangeText={(value) => setMessage({message : value})}
@@ -52,6 +59,8 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontFamily: fonts.primary.normal,
         color: colors.text.primary,
-        maxHeight: 45,
+        // height:0,
+        minHeight: 45,
+        maxHeight: 100
     },
 });
