@@ -69,7 +69,7 @@ export default function Doctor({ navigation }) {
             <HomeProfile onPress={() => navigation.navigate('UserProfile')} />
             {
               profile.role == 3 &&
-              <Text style={styles.welcome}>Mau Konsultasi Dengan Siapa Hari Ini ?</Text>
+              <Text style={styles.welcome}>Mau Konsultasi Dengan Siapa Hari Ini..?</Text>
             }
           </View>
           {
