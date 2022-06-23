@@ -8,10 +8,10 @@ export default function DoctorCategory({ category, onPress }) {
         if (category === 'Dokter Umum') {
             return <ILCatUmum styles={styles.illustration} />;
         }
-        if (category === 'Psikiater') {
+        if (category === 'Dokter Anak') {
             return <ILCatPsikiater styles={styles.illustration} />;
         }
-        if (category === 'Dokter Obat') {
+        if (category === 'Dokter Gigi') {
             return <ILCatObat styles={styles.illustration} />;
         }
         return <ILCatUmum styles={styles.illustration} />;

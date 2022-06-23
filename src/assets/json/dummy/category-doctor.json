@@ -5,19 +5,15 @@
         },
         {
             "id": 2,
-            "category": "Psikiater"
+            "category": "Dokter Anak"
         },
         {
             "id": 3,
-            "category": "Dokter Obat"
-        },
-        {
-            "id": 4,
             "category": "Dokter Gigi"
         },
         {
-            "id": 5,
-            "category": "Psikiater"
+            "id": 4,
+            "category": "Dokter Obat"
         }
     ]
 }
