@@ -39,13 +39,13 @@ const MainApp = () => {
                 name="Doctor"
                 component={Doctor}
                 options={{ headerShown: false }} />
-            {
+            {/* {
                 profile.role == 3 &&
                 <Tab.Screen
                     name="Antrian"
                     component={Antrian}
                     options={{ headerShown: false }} /> 
-            }
+            } */}
             
             {
                 profile.role == 3 ?
