@@ -15,6 +15,7 @@ import UserProfile from './UserProfile';
 import UpdateProfile from './UpdateProfile';
 import DoctorProfile from './DoctorProfile';
 import RsProfile from './RsProfile';
+import Content from './Content';
 
 export {
   Splash,
@@ -33,5 +34,6 @@ export {
   UserProfile,
   UpdateProfile,
   DoctorProfile,
-  RsProfile
+  RsProfile,
+  Content
 };
