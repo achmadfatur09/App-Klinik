@@ -3,7 +3,7 @@ import React from 'react';
 import { colors, fonts } from '../../../utils';
 import { DummyDoctor9 } from '../../../assets';
 
-export default function Other({message}) {
+export default function Other({message, time}) {
     return (
         <View style={styles.container}>
             {/* <Image source={DummyDoctor9} style={styles.avatar} /> */}
@@ -11,7 +11,7 @@ export default function Other({message}) {
                 <View style={styles.chatContent}>
                     <Text style={styles.text}>{message}</Text>
                 </View>
-                {/* <Text style={styles.date}>4.20 AM</Text> */}
+                <Text style={styles.date}>{time}</Text>
             </View>
         </View>
     )

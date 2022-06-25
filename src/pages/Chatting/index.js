@@ -13,6 +13,7 @@ export default function Chatting({ navigation, route }) {
     const [chat, setChat] = useState([]);
     const db = getDatabase();
     const scrollViewRef = useRef();
+    var lastDate = "";
     
     useEffect(() => {
         get(ref(db, 'docter/'+id)).then(res => {
@@ -45,21 +46,34 @@ export default function Chatting({ navigation, route }) {
                 pekerjaan={doctor.pekerjaan}
                 onPress={() => navigation.goBack()}
             />
-            {/* <Text style={styles.chatDate}>Senin, 4 April 2022</Text> */}
             <ScrollView 
                 ref={scrollViewRef}
                 onContentSizeChange={() => scrollViewRef.current.scrollToEnd({animated:true})}
                 >
                 <View style={styles.content}>
-                {
+                {   
                     chat.map(i=> {
-                        const {message, sender} = i.val();
+                        var newDate = false;
+
+                        const {message, sender, time} = i.val();
+                        var timestamp = time;
+                        var times = new Date(timestamp).getHours() + ":" + new Date(timestamp).getSeconds();
+                        var date = new Date(timestamp).getDate() + "-" + new Date(timestamp).getMonth() + "-" + new Date(timestamp).getFullYear();
                         
-                        return (
+                        if (lastDate != date) {
+                            newDate = true;
+                            lastDate = date;
+                        }    
+                        return [
+                            (newDate == true) ?
+                                <Text style={styles.chatDate}>{date}</Text> 
+                                : 
+                                <View></View>
+                            ,
                             (sender == auth.currentUser.uid) ?
-                                <ChatItem key={i.key}  isMe message={message} />
-                                : <ChatItem key={i.key} message={message} />
-                            )
+                                <ChatItem key={i.key}  isMe message={message} time={times} />
+                                : <ChatItem key={i.key} message={message} time={times}/>
+                        ]
                     })
                 }
                 

@@ -7,7 +7,8 @@ import { getDatabase, ref, push, get, set } from '@firebase/database';
 export default function InputChat({sender, receiver}) {
     const [form] = useState({
         sender : sender,
-        receiver : receiver
+        receiver : receiver,
+        time:new Date().getTime()
     });
     const [message, setMessage] = useState({})
 
@@ -23,6 +24,8 @@ export default function InputChat({sender, receiver}) {
             }
         })
     }
+
+    console.log()
 
     let numOfLinesCompany = 0;
 
