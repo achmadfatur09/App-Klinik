@@ -1,0 +1,35 @@
+{
+    "data": [{
+            "id": 1,
+            "type": "Rumah Sakit Umum",
+            "name": "RS Islam Arafah",
+            "address": "Jl. Mpu Gandring No.1 Kebun Jeruk Kota Jambi",
+            "phone": "082383298",
+            "pic": ""
+        },
+        {
+            "id": 2,
+            "type": "Rumah Sakit Umum",
+            "name": "RS Baiturrahim Jambi",
+            "address": "Jl. Prof. M. Yamin, No.30 Kel. Lebak Bandung Kota Jambi",
+            "phone": "082383298",
+            "pic": ""
+        },
+        {
+            "id": 3,
+            "type": "Rumah Sakit Umum",
+            "name": "RSUD Raden Mattaher",
+            "address": "Jl. Letjen Suprapto 31, Jambi",
+            "phone": "082383298",
+            "pic": ""
+        },
+        {
+            "id": 4,
+            "type": "Rumah Sakit Umum",
+            "name": "RSUD Abdul Manap Jambi",
+            "address": "Jl. SK.Rd.Syahbuddin Kec.Kota Baru Jambi",
+            "phone": "082383298",
+            "pic": ""
+        }
+    ]
+}

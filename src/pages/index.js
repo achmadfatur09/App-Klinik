@@ -14,6 +14,7 @@ import ChattingDocter from './ChattingDocter';
 import UserProfile from './UserProfile';
 import UpdateProfile from './UpdateProfile';
 import DoctorProfile from './DoctorProfile';
+import RsProfile from './RsProfile';
 
 export {
   Splash,
@@ -32,4 +33,5 @@ export {
   UserProfile,
   UpdateProfile,
   DoctorProfile,
+  RsProfile
 };

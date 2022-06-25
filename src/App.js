@@ -9,6 +9,8 @@ import FlashMessage from "react-native-flash-message";
 require('./config/firebase');
 
 LogBox.ignoreLogs(['Warning: ...']);
+LogBox.ignoreAllLogs();
+
 export default function MainApp() {
   const [loading, setLoading] = useState(false);
   // const stateGlobal = useSelector(state => state);
