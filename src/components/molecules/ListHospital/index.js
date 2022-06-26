@@ -1,17 +1,19 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { colors, fonts } from '../../../utils';
 
-export default function ListHospital({ type, name, address, pic }) {
+export default function ListHospital({ type, name, address, pic, onPress }) {
     return (
-        <View style={styles.container}>
-            <Image source={pic} style={styles.picture} />
-            <View>
-                <Text style={styles.title}>{type}</Text>
-                <Text style={styles.title}>{name}</Text>
-                <Text style={styles.address}>{address}</Text>
+        <TouchableOpacity onPress={onPress}>
+            <View style={styles.container}>
+                <Image source={pic} style={styles.picture} />
+                <View>
+                    <Text style={styles.title}>{type}</Text>
+                    <Text style={styles.title}>{name}</Text>
+                    <Text style={styles.address}>{address}</Text>
+                </View>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 };
 

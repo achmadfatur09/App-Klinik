@@ -47,7 +47,7 @@ export default function Doctor({ navigation }) {
 
   useEffect(() => {
     get(ref(db, 'docter/')).then(res => {
-      console.log('data: ',res);
+      // console.log('data: ',res);
       let data = []
       if (res.val()) {
         res.forEach(v => {

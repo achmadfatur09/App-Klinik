@@ -23,10 +23,12 @@ export default function UpdateProfile({ navigation }) {
   useEffect(() => {
     getData('user').then(res => {
       const data = res;
-      setPhoto(data.photo);
+      (profile.role == 3) ? setPhoto(data.photo) : setPhoto({uri:data.photo});
       setProfile(data);
     });
   }, []);
+
+  console.log(profile);
 
   const updateData = () => {
     const data = profile;
@@ -72,7 +74,9 @@ export default function UpdateProfile({ navigation }) {
     }
 
     try {
-      const updating = await update(ref(db, 'users/' + uid), data);
+      const updating = (profile.role == 3) ?
+        await update(ref(db, 'users/' + uid), data)
+        : await update(ref(db, 'docter/' + uid), data);
       if (updating) {
         storeData('user', data);
       }
@@ -135,15 +139,32 @@ export default function UpdateProfile({ navigation }) {
         <View style={styles.content}>
           <Profile isRemove onPress={getImage} photo={photo} />
           <Gap height={5} />
-          <Input
-            label="Full Name"
-            value={profile.fullName}
-            onChangeText={(value) => changeText('fullName', value)} />
+          {
+            profile.role == 3 ?
+            <Input
+              label="Full Name"
+              value={profile.fullName}
+              onChangeText={(value) => changeText('fullName', value)} /> 
+              :
+              <Input
+                label="Full Name"
+                value={profile.nama}
+                onChangeText={(value) => changeText('nama', value)} />
+          }
           <Gap height={2} />
-          <Input
-            label="Pekerjaan"
-            value={profile.profession}
-            onChangeText={(value) => changeText('profession', value)} />
+          {
+            profile.role == 3 ?
+            <Input
+              label="Pekerjaan"
+              value={profile.profession}
+              onChangeText={(value) => changeText('profession', value)} /> 
+              :
+              <Input
+              label="Pekerjaan"
+              value={profile.pekerjaan}
+              onChangeText={(value) => changeText('pekerjaan', value)} />
+
+          }
           <Gap height={2} />
           <Input
             label="Email"

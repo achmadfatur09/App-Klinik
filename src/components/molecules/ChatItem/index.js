@@ -3,9 +3,9 @@ import React from 'react';
 import Other from './Other';
 import IsMe from './IsMe';
 
-export default function ChatItem({ isMe, message}) {
+export default function ChatItem({ isMe, message, time}) {
     if (isMe) {
-        return <IsMe message={message}/>
+        return <IsMe message={message} time={time}/>
     }
-    return <Other message={message}/>
+    return <Other message={message} time={time}/>
 };

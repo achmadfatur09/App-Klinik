@@ -16,7 +16,9 @@ import {
     UserProfile,
     UpdateProfile,
     DoctorProfile,
+    RsProfile,
     Antrian,
+    Content,
 } from "../pages";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { BottomNavigator } from "../components";
@@ -131,6 +133,16 @@ const Router = () => {
             <Stack.Screen
                 name="DocterProfile"
                 component={DoctorProfile}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="RsProfile"
+                component={RsProfile}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="Content"
+                component={Content}
                 options={{ headerShown: false }}
             />
         </Stack.Navigator>
