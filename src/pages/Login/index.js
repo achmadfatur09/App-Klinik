@@ -44,7 +44,13 @@ export default function Login({ navigation }) {
             .catch(err => {
                 setLoading(false);
                 // dispatch({ type: 'SET_LOADING', value: false });
-                showError(err.message);
+                // showError(err.message);
+                showMessage({
+                    message: 'opps, Email atau Password Anda Salah',
+                    type: 'default',
+                    backgroundColor: colors.error,
+                    color: colors.white,
+                  });
             });
     };
 

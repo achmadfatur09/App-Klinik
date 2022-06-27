@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     },
     content: {
         flex: 1,
+        paddingHorizontal: 20,
     },
     chatDate: {
         fontSize: 11,
