@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import {
   DoctorCategory,
@@ -114,6 +114,16 @@ export default function Doctor({ navigation }) {
 
           </View>
           }
+
+          {
+            profile.role == 2 &&
+            <TouchableOpacity onPress={()=>navigation.navigate('RekamMedis',{nama:profile.nama})}>
+              <View style={styles.wrapperSection}>
+                <Text style={styles.sectionLabel}>Rekam Medis</Text>
+              </View>
+            </TouchableOpacity>
+          }
+
           <View style={styles.wrapperSection}>
             <Text style={styles.sectionLabel}>Good News</Text>
           </View>
