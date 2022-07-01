@@ -16,6 +16,7 @@ import UpdateProfile from './UpdateProfile';
 import DoctorProfile from './DoctorProfile';
 import RsProfile from './RsProfile';
 import Content from './Content';
+import RekamMedis from './RekamMedis';
 
 export {
   Splash,
@@ -35,5 +36,6 @@ export {
   UpdateProfile,
   DoctorProfile,
   RsProfile,
-  Content
+  Content,
+  RekamMedis
 };

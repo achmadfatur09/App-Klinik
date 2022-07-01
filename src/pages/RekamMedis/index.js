@@ -2,50 +2,34 @@ import { StyleSheet, View, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import { Button, Gap, Header, Input, Loading } from '../../components';
 import { colors, showError, storeData, useForm } from '../../utils';
-import { getAuth, createUserWithEmailAndPassword } from '@firebase/auth';
-import { getDatabase, ref, set } from '@firebase/database';
+import { getDatabase, ref, push } from '@firebase/database';
 
-export default function RekamMedis({ navigation }) {
-
+export default function RekamMedis({ navigation, route }) {
+    const {nama} = route.params;
+    
     const [form, setForm] = useForm({
-        fullName: '',
-        profession: '',
-        email: '',
-        password: '',
+        dokter:nama
     });
 
     const [loading, setLoading] = useState(false);
 
-    function writerUserData(data, uid) {
-        const db = getDatabase();
-        set(ref(db, 'users/'+uid), data);
-        storeData('user', data);
-    };
-
     const onContinue = () => {
 
         setLoading(true);
-        const auth = getAuth()
-        createUserWithEmailAndPassword(auth, form.email, form.password)
-        .then((success) => {
-                const uid = auth.currentUser.uid
-                setLoading(false);
-                setForm('reset');
-                writerUserData(form, uid);
-                navigation.navigate('UploadPhoto', form);
-            })
-            .catch((error) => {
-                const errorMessage = error.message;
-                setLoading(false);
-                showError('The email address is already in use by another account.');
-            });
+        const db = getDatabase();
+
+        if(push(ref(db, 'rekammedis/'), form)){
+            navigation.goBack();
+        }else{
+            setLoading(false);
+        }
     };
     return (
         <>
             <View style={styles.page}>
                 <Header
                     onPress={() => navigation.goBack()}
-                    title="Daftar Akun"
+                    title="Rekam Medis"
                 />
                 <View style={styles.content}>
                     <ScrollView showsVerticalScrollIndicator={false}>
@@ -88,6 +72,7 @@ export default function RekamMedis({ navigation }) {
                             title="Sent"
                             onPress={onContinue}
                         />
+                        <Gap height={54} />
                     </ScrollView>
                 </View>
             </View>

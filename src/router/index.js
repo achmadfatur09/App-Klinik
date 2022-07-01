@@ -19,6 +19,7 @@ import {
     RsProfile,
     Antrian,
     Content,
+    RekamMedis
 } from "../pages";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { BottomNavigator } from "../components";
@@ -143,6 +144,11 @@ const Router = () => {
             <Stack.Screen
                 name="Content"
                 component={Content}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="RekamMedis"
+                component={RekamMedis}
                 options={{ headerShown: false }}
             />
         </Stack.Navigator>
