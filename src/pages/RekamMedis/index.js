@@ -59,7 +59,7 @@ export default function RekamMedis({ navigation, route }) {
                         <Input
                             label="Dokter"
                             value={form.dokter}
-                            onChangeText={value => setForm('dokter', value)}
+                            onChangeText={value => setForm('dokter', value)} disable
                         />
                         <Gap height={24} />
                         <Input
