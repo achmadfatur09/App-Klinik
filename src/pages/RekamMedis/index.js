@@ -33,6 +33,12 @@ export default function RekamMedis({ navigation, route }) {
                 />
                 <View style={styles.content}>
                     <ScrollView showsVerticalScrollIndicator={false}>
+                    <Input
+                            label="No Rekam Medis"
+                            value={form.noRekamMedis}
+                            onChangeText={value => setForm('noRekamMedis', value)}
+                        />
+                        <Gap height={24} />
                         <Input
                             label="Full Name"
                             value={form.fullName}
@@ -63,7 +69,7 @@ export default function RekamMedis({ navigation, route }) {
                         />
                         <Gap height={24} />
                         <Input
-                            label="Konsultasi"
+                            label="Diagnosis"
                             value={form.konsultasi}
                             onChangeText={value => setForm('konsultasi', value)}
                         />
