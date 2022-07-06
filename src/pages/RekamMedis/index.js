@@ -1,15 +1,39 @@
 import { StyleSheet, View, ScrollView } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Gap, Header, Input, Loading } from '../../components';
 import { colors, showError, storeData, useForm } from '../../utils';
-import { getDatabase, ref, push } from '@firebase/database';
+import { getDatabase, ref, push,get } from '@firebase/database';
+import { Picker } from '@react-native-picker/picker';
 
 export default function RekamMedis({ navigation, route }) {
     const {nama} = route.params;
+    const [selectedValue, setSelectedValue] = useState();
+    const [pasienAll, setPasienAll] = useState([]);
+    const [pasien, setPasien] = useState({
+        noRekamMedis:'',
+        fullName:'',
+        alamat:'',
+        noHp:''
+    });
     
     const [form, setForm] = useForm({
-        dokter:nama
+        date: new Date().toLocaleString(),
+        dokter:nama,
     });
+
+    
+
+    useEffect(() => {
+        get(ref(getDatabase(), 'users/')).then(res => {
+            let data = []
+            if (res.val()) {
+                res.forEach(v => {
+                    data.push(v);
+                })
+                setPasienAll(data);
+            }
+        })
+    }, []);
 
     const [loading, setLoading] = useState(false);
 
@@ -17,13 +41,15 @@ export default function RekamMedis({ navigation, route }) {
 
         setLoading(true);
         const db = getDatabase();
+        const data = {...form, ...pasien};
 
-        if(push(ref(db, 'rekammedis/'), form)){
+        if(push(ref(db, 'rekammedis/'), data)){
             navigation.goBack();
         }else{
             setLoading(false);
         }
     };
+
     return (
         <>
             <View style={styles.page}>
@@ -33,34 +59,58 @@ export default function RekamMedis({ navigation, route }) {
                 />
                 <View style={styles.content}>
                     <ScrollView showsVerticalScrollIndicator={false}>
-                    <Input
+                        <Picker
+                            selectedValue={selectedValue}
+                            style={{height:50}}
+                            onValueChange={(itemSelected) => {
+                                if(itemSelected != null){
+                                    setSelectedValue(itemSelected);
+                                    setPasien({
+                                        noRekamMedis:itemSelected.val().noRekamMedis,
+                                        fullName:itemSelected.val().fullName,
+                                        alamat:itemSelected.val().alamat,
+                                        noHp:itemSelected.val().noHp
+                                    })
+                                }
+                                console.log("form : ",form);
+                            }}
+                        >
+                            <Picker.Item label="Pilih Pasien" value={null}/>
+                            {
+                                pasienAll.map(i => {
+                                    return <Picker.Item label={i.val().fullName} value={i} />
+                                })
+                            }
+                        </Picker>
+
+                        <Input
                             label="No Rekam Medis"
-                            value={form.noRekamMedis}
-                            onChangeText={value => setForm('noRekamMedis', value)}
+                            value={pasien.noRekamMedis}
+                            onChangeText={value => setPasien(...pasien,{ noRekamMedis:value})}
                         />
                         <Gap height={24} />
                         <Input
                             label="Full Name"
-                            value={form.fullName}
-                            onChangeText={value => setForm('fullName', value)}
+                            value={pasien.fullName}
+                            onChangeText={value => setPasien(...pasien, {fullName:value})}
                         />
                         <Gap height={24} />
                         <Input
                             label="Waktu"
                             value={form.date}
-                            onChangeText={value => setForm('date', value)}
+                            onChangeText={value => setForm('date', value)} disable
                         />
                         <Gap height={24} />
                         <Input
                             label="Alamat"
-                            value={form.alamat}
-                            onChangeText={value => setForm('alamat', value)}
+                            value={pasien.alamat}
+                            onChangeText={value => setPasien(...pasien, {alamat:value})}
                         />
                         <Gap height={24} />
                         <Input
                             label="No Hp"
-                            value={form.noHp}
-                            onChangeText={value => setForm('noHp', value)}
+                            value={pasien.noHp}
+                            onChangeText={value => setPasien(...pasien,{noHp:value})}
                         />
                         <Input
                             label="Dokter"
