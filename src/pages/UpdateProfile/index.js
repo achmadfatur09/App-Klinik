@@ -24,12 +24,13 @@ export default function UpdateProfile({ navigation }) {
   useEffect(() => {
     getData('user').then(res => {
       const data = res;
-      (profile.role == 3) ? setPhoto(data.photo) : setPhoto({ uri: data.photo });
       setProfile(data);
     });
   }, []);
 
-  console.log(profile);
+  useEffect(() => {
+    (profile.role == 3) ? setPhoto(profile.photo) : setPhoto({ uri: profile.photo });
+  }, [profile])
 
   const updateData = () => {
     const data = profile;
