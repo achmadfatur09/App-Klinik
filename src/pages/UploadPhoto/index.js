@@ -54,8 +54,8 @@ export default function UploadPhoto({ navigation, route }) {
                     // photo: {uri:`data:${photoForDB.type};base64,${imageUrlEncode}`},
                     photo: { uri: imageUrl },
                 })
-                route.params.photo = { uri: imageUrl };
-
+                route.params.photo = {uri:imageUrl};
+                route.params.role = 3;
                 storeData('user', route.params);
                 navigation.replace('MainApp');
             })

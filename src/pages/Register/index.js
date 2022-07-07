@@ -92,6 +92,7 @@ export default function Register({ navigation }) {
                             title="Continue"
                             onPress={onContinue}
                         />
+                        <Gap height={50} />
                     </ScrollView>
                 </View>
             </View>
