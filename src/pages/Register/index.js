@@ -14,6 +14,7 @@ export default function Register({ navigation }) {
         noHp: '',
         email: '',
         password: '',
+        noRekamMedis: (Math.random() * 2).toString(36).substring(2)
     });
 
     const [loading, setLoading] = useState(false);
