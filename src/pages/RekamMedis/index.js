@@ -86,13 +86,13 @@ export default function RekamMedis({ navigation, route }) {
                         <Input
                             label="No Rekam Medis"
                             value={pasien.noRekamMedis}
-                            onChangeText={value => setPasien(...pasien,{ noRekamMedis:value})}
+                            onChangeText={value => setPasien(...pasien,{ noRekamMedis:value})} disable
                         />
                         <Gap height={24} />
                         <Input
                             label="Full Name"
                             value={pasien.fullName}
-                            onChangeText={value => setPasien(...pasien, {fullName:value})}
+                            onChangeText={value => setPasien(...pasien, {fullName:value})} disable
                         />
                         <Gap height={24} />
                         <Input
@@ -104,13 +104,13 @@ export default function RekamMedis({ navigation, route }) {
                         <Input
                             label="Alamat"
                             value={pasien.alamat}
-                            onChangeText={value => setPasien(...pasien, {alamat:value})}
+                            onChangeText={value => setPasien(...pasien, {alamat:value})} disable
                         />
                         <Gap height={24} />
                         <Input
                             label="No Hp"
                             value={pasien.noHp}
-                            onChangeText={value => setPasien(...pasien,{noHp:value})}
+                            onChangeText={value => setPasien(...pasien,{noHp:value})} disable
                         />
                         <Input
                             label="Dokter"

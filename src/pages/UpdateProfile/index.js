@@ -14,6 +14,8 @@ export default function UpdateProfile({ navigation }) {
     fullName: '',
     profession: '',
     noRekamMedis: '',
+    alamat: '',
+    noHp: '',
     email: '',
   });
   const [newPhoto, setNewPhoto] = useState(false);
@@ -172,7 +174,24 @@ export default function UpdateProfile({ navigation }) {
             profile.role == 3 &&
             <Input
               label="Nomer Rekam Medis"
+              value={profile.noRekamMedis}
               onChangeText={(value) => changeText('noRekamMedis', value)}
+            />
+          }
+          {
+            profile.role == 3 &&
+            <Input
+              label="Alamat"
+              value={profile.alamat}
+              onChangeText={(value) => changeText('alamat', value)}
+            />
+          }
+          {
+            profile.role == 3 &&
+            <Input
+              label="No HP"
+              value={profile.noHp}
+              onChangeText={(value) => changeText('noHp', value)}
             />
           }
           <Gap height={2} />

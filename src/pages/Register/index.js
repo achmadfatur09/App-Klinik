@@ -10,6 +10,8 @@ export default function Register({ navigation }) {
     const [form, setForm] = useForm({
         fullName: '',
         profession: '',
+        alamat: '',
+        noHp: '',
         email: '',
         password: '',
     });
@@ -59,6 +61,18 @@ export default function Register({ navigation }) {
                             label="Pekerjaan"
                             value={form.profession}
                             onChangeText={value => setForm('profession', value)}
+                        />
+                        <Gap height={24} />
+                        <Input
+                            label="Alamat"
+                            value={form.alamat}
+                            onChangeText={value => setForm('alamat', value)}
+                        />
+                        <Gap height={24} />
+                        <Input
+                            label="No HP"
+                            value={form.noHp}
+                            onChangeText={value => setForm('noHp', value)}
                         />
                         <Gap height={24} />
                         <Input
