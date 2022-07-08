@@ -153,7 +153,7 @@ export default function UpdateProfile({ navigation }) {
               <Input
                 label="Full Name"
                 value={profile.nama}
-                onChangeText={(value) => changeText('nama', value)} />
+                onChangeText={(value) => changeText('nama', value)} disable />
           }
           <Gap height={2} />
           {
@@ -175,7 +175,7 @@ export default function UpdateProfile({ navigation }) {
             <Input
               label="Nomer Rekam Medis"
               value={profile.noRekamMedis}
-              onChangeText={(value) => changeText('noRekamMedis', value)}
+              onChangeText={(value) => changeText('noRekamMedis', value)} disable
             />
           }
           {
