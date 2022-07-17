@@ -16,7 +16,10 @@ export default function Register({ navigation }) {
                 data.push(v.val().noRekamMedis);
             })
             const d = data.sort().map(v => parseInt(v.replace("RM", '')))
-            setForm('noRekamMedis', "RM"+Math.max(...d))
+            const inc = Math.max(...d) + 1;
+            setForm('noRekamMedis', "RM"+inc)
+        }else{
+            setForm('noRekamMedis', "RM1")
         }
         }).catch(err => {
             showError(err.message);
@@ -32,6 +35,7 @@ export default function Register({ navigation }) {
         password: '',
         // noRekamMedis: (Math.random() * 2).toString(36).substring(2)
     });
+    console.log(form);
 
     const [loading, setLoading] = useState(false);
 
