@@ -1,11 +1,27 @@
 import { StyleSheet, View, ScrollView } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Gap, Header, Input, Loading } from '../../components';
 import { colors, showError, storeData, useForm } from '../../utils';
 import { getAuth, createUserWithEmailAndPassword } from '@firebase/auth';
-import { getDatabase, ref, set } from '@firebase/database';
+import { getDatabase, ref, set, get } from '@firebase/database';
 
 export default function Register({ navigation }) {
+    useEffect(() => {
+        const db = getDatabase();
+        get(ref(db, 'users/')).then(res => {
+          // console.log('data: ',res);
+        let data = []
+        if (res.val()) {
+            res.forEach(v => {
+                data.push(v.val().noRekamMedis);
+            })
+            const d = data.sort().map(v => parseInt(v.replace("RM", '')))
+            setForm('noRekamMedis', "RM"+Math.max(...d))
+        }
+        }).catch(err => {
+            showError(err.message);
+        })
+    }, [])
 
     const [form, setForm] = useForm({
         fullName: '',
@@ -14,7 +30,7 @@ export default function Register({ navigation }) {
         noHp: '',
         email: '',
         password: '',
-        noRekamMedis: (Math.random() * 2).toString(36).substring(2)
+        // noRekamMedis: (Math.random() * 2).toString(36).substring(2)
     });
 
     const [loading, setLoading] = useState(false);
