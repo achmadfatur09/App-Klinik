@@ -40,7 +40,7 @@ export default function Register({ navigation }) {
             .catch((error) => {
                 const errorMessage = error.message;
                 setLoading(false);
-                showError('The email address is already in use by another account.');
+                showError('The email address already in use and password less than 6 characters');
             });
     };
     return (
