@@ -91,7 +91,8 @@ export default function UpdateProfile({ navigation }) {
 
   const uploadPhoto = async () => {
     const storage = getStorage();
-    const referStorage = refStorage(storage, 'profil/' + photoForDB.fileName);
+    const refereStorage =  (profile.role == 3) ? 'profil/' : 'docter/';
+    const referStorage = refStorage(storage, refereStorage + photoForDB.fileName);
 
     const respone = await fetch(photoForDB.uri);
     const blob = await respone.blob();
@@ -99,7 +100,7 @@ export default function UpdateProfile({ navigation }) {
 
     if (uploadPhotoBytes) {
       // console.log('Uploaded a blob or file!');
-      return { uri: await getDownloadURL(referStorage) };
+      return (profile.role == 3) ? { uri: await getDownloadURL(referStorage) } : await getDownloadURL(referStorage);
     }
     return false
   }
